@@ -1,0 +1,515 @@
+\section*{(7\textordfeminine\ aula) --- Operadores em Dimensão Infinita: Momento, Posição e a Equação de Onda}
+
+\subsection*{Operadores em dimensão infinita}
+
+Vimos então que, no espaço vetorial de funções complexas definidas no intervalo $x \in [a,b]$, temos
+\begin{align*}
+&\{\ket{x}, \; x \in [a,b]\} \quad \text{vetores base} \\
+&\braket{x}{x'} = \delta(x-x') \quad \text{ortonormalidade da base} \\
+&\hat{I} = \int_a^b dx \,\ket{x}\bra{x} \quad \text{identidade} \\
+&\ket{f} = \int_a^b dx \,\ket{x}\braket{x}{f} = \int_a^b dx \,\ket{x} f(x) \\
+&\braket{g}{f} = \int_a^b dx \, g^*(x) f(x) \qquad \text{($g^*(x)f(x)$ é a componente do vetor $\ket{f}$ na base)}
+\end{align*}
+
+Vamos ver como são os operadores nesse EV de dimensão infinita.
+\begin{equation}
+\hat{\Omega}\ket{f} = \ket{\tilde{f}}
+\label{eq:aula7_operador_geral}
+\end{equation}
+$\hat{\Omega}$ transforma a função $f(x)$ em $\tilde{f}(x)$. Um exemplo de operador seria
+\begin{equation}
+\hat{D}\ket{f} = \ket{df/dx}
+\label{eq:aula7_operador_D}
+\end{equation}
+onde $\ket{f}$ é o ket associado a $f(x)$ e $\ket{df/dx}$ é o ket associado a $df/dx$.
+
+Quais são os elementos de matriz do operador $\hat{D}$ na base $\ket{x}$?
+\begin{equation}
+\braket{x}{\hat{D}f} \equiv \bra{x}\hat{D}\ket{f} = \braket{x}{df/dx} = \frac{df}{dx}
+\label{eq:aula7_D_elemento1}
+\end{equation}
+Introduzindo a identidade $\hat{I} = \int_a^b dx' \ket{x'}\bra{x'}$ entre $\hat{D}$ e $\ket{f}$:
+\begin{equation}
+\bra{x}\hat{D}\ket{f} = \int_a^b dx' \bra{x}\hat{D}\ket{x'}\braket{x'}{f} = \frac{df}{dx}
+\label{eq:aula7_D_elemento2}
+\end{equation}
+então
+\begin{equation}
+\int_a^b dx' \bra{x}\hat{D}\ket{x'} f(x') = \frac{df}{dx}
+\label{eq:aula7_D_elemento3}
+\end{equation}
+claramente,
+\begin{equation}
+\boxed{\bra{x}\hat{D}\ket{x'} = \delta'(x-x') = \frac{d}{dx}\delta(x-x')}
+\label{eq:aula7_D_matriz}
+\end{equation}
+
+Na prática usaremos poucas vezes esses elementos de matriz. Ao invés disso usaremos com frequência
+\begin{equation}
+\boxed{\bra{x}\hat{D}\ket{f} = \frac{df}{dx}}
+\label{eq:aula7_D_pratico}
+\end{equation}
+
+\subsection*{Hermiticidade de operadores em dimensão infinita}
+
+No caso de EV de dimensão FINITA, a maneira simples de determinar se um operador $\hat{\Omega}$ é hermitiano é montar sua matriz em uma base ortonormal e observar se essa matriz é Hermitiana (isto é, se ela é igual à sua transposta conjugada).
+
+Em um EV de dimensão INFINITA se usa um teste alternativo. Vamos aplicar esse teste ao operador derivado de $\hat{D}$, $\hat{K} = -i\hat{D}$.
+
+Se $\hat{K}$ é Hermitiano então, para quaisquer $\ket{f}$ e $\ket{g}$ do EV devemos ter
+\begin{equation}
+\bra{f}\hat{K}\ket{g} = \bra{g}\hat{K}^\dagger\ket{f}^* = \bra{g}\hat{K}\ket{f}^* \qquad (\text{pois } \hat{K}^\dagger = \hat{K})
+\label{eq:aula7_K_hermitiano_def}
+\end{equation}
+Então, se $\hat{K}$ é Hermitiano, $\bra{f}\hat{K}\ket{g} = \bra{g}\hat{K}\ket{f}^*$.
+\begin{equation}
+\bra{f}\hat{K}\ket{g} = \int_a^b \braket{f}{x}\bra{x}(-i\hat{D})\ket{g}\,dx \qquad \text{(coloquei $\hat{I}$ aqui)}
+\label{eq:aula7_K_passo1}
+\end{equation}
+\begin{equation}
+= \int_a^b f^*(x)\left(-i\frac{dg}{dx}\right)dx
+\label{eq:aula7_K_passo2}
+\end{equation}
+
+Por outro lado,
+\begin{equation}
+\bra{g}\hat{K}\ket{f}^* = \left[\int_a^b g^*(x)\left(-i\frac{df}{dx}\right)dx\right]^*
+\label{eq:aula7_K_conj1}
+\end{equation}
+\begin{equation}
+= \int_a^b g(x)\, i\,\frac{df^*}{dx}\,dx
+\label{eq:aula7_K_conj2}
+\end{equation}
+Integrando por partes:
+\begin{equation}
+\bra{g}\hat{K}\ket{f}^* = i\, g(x) f^*(x)\Big|_a^b - i\int_a^b f^*(x)\frac{dg}{dx}\,dx
+\label{eq:aula7_K_partes}
+\end{equation}
+
+A Eq.~\eqref{eq:aula7_K_passo2} só é igual à Eq.~\eqref{eq:aula7_K_partes} se o termo de superfície se anular PARA QUALQUER $f(x)$ e $g(x)$ do EV.
+
+Isso acontece se o EV incluir apenas funções complexas PERIÓDICAS no intervalo $[a,b]$. O caso onde $f(a)=f(b)=0$ sendo um caso especial.
+
+\begin{equation}
+\boxed{\hat{K} = -i\hat{D} \text{ é Hermitiano no EV de funções complexas em } [a,b] \text{ que são periódicas: } f(a)=f(b)}
+\label{eq:aula7_K_hermitiano_resultado}
+\end{equation}
+
+\subsection*{Funções físicas e funções impróprias}
+
+O EV de funções complexas em $(-\infty,\infty)$ da MQ inclui dois tipos de funções (iremos usar adiante $\hat{I} = \int \ket{x}\bra{x}\,dx$):
+
+\begin{enumerate}
+\item[(i)] Funções FÍSICAS, normalizáveis:
+\begin{equation}
+\braket{f}{f} = \int_{-\infty}^{\infty} f^*(x) f(x)\,dx < \infty.
+\label{eq:aula7_funcao_fisica}
+\end{equation}
+Isso exige que $f(\infty) = f(-\infty) = 0$. Essas são as funções que descrevem ESTADOS FÍSICOS (possíveis de serem criados) de uma partícula.
+
+\item[(ii)] Funções IMPRÓPRIAS, ou não-normalizáveis, tais que $|f(\infty)|, |f(-\infty)| < \infty$ (as funções não podem DIVERGIR no infinito).
+\end{enumerate}
+
+Por exemplo:
+\begin{equation}
+f(x) = \delta(x-a) \qquad \text{ou} \qquad f(x) = e^{ikx}
+\label{eq:aula7_funcao_impropria_exemplo}
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty} \delta(x-a)\,\delta(x-a)\,dx = \delta(0) = \infty
+\label{eq:aula7_funcao_impropria_delta}
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty} e^{-ikx}e^{ikx}\,dx = \int_{-\infty}^{\infty} dx = \infty
+\label{eq:aula7_funcao_impropria_exp}
+\end{equation}
+
+Essas funções são não-físicas, não há como produzir uma partícula em um estado como esses; no entanto elas aparecem como autofunções de certos operadores (ver adiante) e são úteis em cálculos.
+
+A análise anterior sobre a hermiticidade do operador $\hat{K} = -i\hat{D}$ mostra que ele é Hermitiano no EV das funções físicas, pois essas se anulam em $x=\infty$ e $x=-\infty$.
+
+A "prova" de que o operador ainda é Hermitiano com a inclusão das funções impróprias do tipo (ii) é feita na pág.\ 66 do livro.
+
+Veja por que temos que incluir funções IMPRÓPRIAS no EV das funções físicas: vamos calcular os \textbf{autovetores e autovalores do operador $\hat{K}$}.
+
+\subsection*{Autovetores e autovalores do operador $\hat{K}$}
+
+\begin{equation}
+\hat{K}\ket{k} = k\ket{k}
+\label{eq:aula7_K_autovalor}
+\end{equation}
+Usando $\bra{x}\hat{K}\ket{f} = -i\dfrac{df}{dx}$ e $\braket{x}{f} = f(x)$, obtemos
+\begin{equation}
+-i\frac{d}{dx}\psi_k(x) = k\,\psi_k(x), \qquad \text{onde } \psi_k(x) = \braket{x}{k}
+\label{eq:aula7_K_edo}
+\end{equation}
+
+Veja como a equação de autovalor se transforma em uma EDO. Em EV de dimensão infinita não usamos aquela rotina de encontrar a equação característica por meio de $\det[\hat{\Omega} - \omega \hat{I}] = 0$, pois não há como escrever a matriz dos operadores.
+
+A solução da EDO é
+\begin{equation}
+\psi_k(x) = A\, e^{ikx}
+\label{eq:aula7_K_solucao}
+\end{equation}
+
+\begin{itemize}
+\item Essa é uma função IMPRÓPRIA do tipo (ii) DESDE QUE o autovalor $k$ seja real.
+\item Se $k$ tivesse parte imaginária, a autofunção $\psi_k(x)$ não pertenceria ao EV (não seria do tipo (i) nem do tipo (ii), pois divergiria no infinito).
+\item A constante $A$ reflete o fato de que autovetores envolvem sempre uma constante arbitrária. Usamos $A = 1/\sqrt{2\pi}$ de modo que
+\begin{equation}
+\braket{x}{k} = \psi_k(x) = \frac{1}{\sqrt{2\pi}}\,e^{ikx}
+\label{eq:aula7_K_autofuncao_normalizada}
+\end{equation}
+\item Com essa escolha, os vetores $\ket{k}$, com $k \in (-\infty,\infty)$, satisfazem
+\begin{equation}
+\braket{k}{k'} = \int_{-\infty}^{\infty}\braket{k}{x}\braket{x}{k'}\,dx = \int_{-\infty}^{\infty}\frac{1}{2\pi}e^{-ikx}e^{ik'x}\,dx = \delta(k-k')
+\label{eq:aula7_K_ortonormalizacao}
+\end{equation}
+(lembre a representação integral da função delta).
+\end{itemize}
+
+Essa ortonormalização dos vetores $\ket{k}$ permite escrever a identidade como
+\begin{equation}
+\hat{I} = \int_{-\infty}^{\infty} dk\,\ket{k}\bra{k} \qquad \text{(ortonormais no sentido da função delta)}
+\label{eq:aula7_identidade_k}
+\end{equation}
+
+Temos agora duas bases para o EV das funções complexas em $(-\infty,\infty)$:
+\begin{align}
+\ket{f} &= \int_{-\infty}^{\infty} dx\,\ket{x}\braket{x}{f} = \int_{-\infty}^{\infty} dx\,\ket{x}\,f(x) \label{eq:aula7_base_x} \\
+\ket{f} &= \int_{-\infty}^{\infty} dk\,\ket{k}\braket{k}{f} = \int_{-\infty}^{\infty} dk\,\ket{k}\,f(k) \label{eq:aula7_base_k}
+\end{align}
+
+Qual a relação entre $f(k)$ e $f(x)$?
+\begin{equation}
+f(k) = \braket{k}{f} = \int_{-\infty}^{\infty} dx\,\braket{k}{x}\braket{x}{f}
+\label{eq:aula7_fk_def}
+\end{equation}
+\begin{equation}
+= \int_{-\infty}^{\infty} dx\,\frac{1}{\sqrt{2\pi}}\,e^{-ikx}\,f(x)
+\label{eq:aula7_fk_integral}
+\end{equation}
+$\Rightarrow$ $f(k)$ é a \textbf{transformada de Fourier} de $f(x)$!
+
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Observação:} A Eq.\ (1.10.35) [do livro-texto] está errada. A expressão correta é
+\begin{equation}
+\braket{x}{f} = \int_{-\infty}^{\infty} dk\,\braket{x}{k}\braket{k}{f} \qquad \text{(CORRIJA)}
+\label{eq:aula7_correcao_livro}
+\end{equation}
+}}
+
+O operador $\hat{K}$, na base de seus autovetores, fica
+\begin{equation}
+\bra{k}\hat{K}\ket{k'} = k'\braket{k}{k'} = k'\,\delta(k-k')
+\label{eq:aula7_K_na_base_propria}
+\end{equation}
+
+\subsection*{O operador $\hat{X}$}
+
+Vamos inventar um operador que tem como autovetores os vetores $\ket{x}$:
+\begin{equation}
+\hat{X}\ket{x} = x\ket{x}, \qquad x \in (-\infty,\infty)
+\label{eq:aula7_X_autovalor}
+\end{equation}
+
+A ortonormalização dos autovetores é $\braket{x}{x'} = \delta(x-x')$ (inteiramente análogo a $\braket{k}{k'} = \delta(k-k')$ dos autovetores do operador $\hat{K}$).
+
+A ação de $\hat{X}$ em um vetor qualquer:
+\begin{equation}
+\hat{X}\ket{f} = \ket{\tilde{f}}
+\label{eq:aula7_X_acao}
+\end{equation}
+\begin{equation}
+\Rightarrow \int_{-\infty}^{\infty} \bra{x}\hat{X}\ket{x'}\braket{x'}{f}\,dx' = \braket{x}{\tilde{f}}
+\label{eq:aula7_X_acao2}
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty} x'\,\delta(x-x')\,f(x')\,dx' = \tilde{f}(x)
+\label{eq:aula7_X_acao3}
+\end{equation}
+\begin{equation}
+x\,f(x) = \tilde{f}(x)
+\label{eq:aula7_X_acao4}
+\end{equation}
+portanto
+\begin{equation}
+\boxed{\bra{x}\hat{X}\ket{f} = x\,f(x)} \qquad \left(\text{compare com } \bra{x}\hat{K}\ket{f} = -i\frac{df}{dx}\right)
+\label{eq:aula7_X_resultado}
+\end{equation}
+
+\subsection*{Hermiticidade de $\hat{X}$ e o comutador $[\hat{X},\hat{K}]$}
+
+O operador $\hat{X}$ é Hermitiano pois, para quaisquer $\ket{f}$ e $\ket{g}$,
+\begin{equation}
+\bra{f}\hat{X}\ket{g} = \int_{-\infty}^{\infty} \braket{f}{x}\bra{x}\hat{X}\ket{g}\,dx
+\label{eq:aula7_X_hermitiano1}
+\end{equation}
+\begin{equation}
+= \int_{-\infty}^{\infty} f^*(x)\,x\,g(x)\,dx
+\label{eq:aula7_X_hermitiano2}
+\end{equation}
+\begin{equation}
+\bra{g}\hat{X}\ket{f}^* = \left[\int_{-\infty}^{\infty}\braket{g}{x}\bra{x}\hat{X}\ket{f}\,dx\right]^*
+\label{eq:aula7_X_hermitiano3}
+\end{equation}
+\begin{equation}
+= \left[\int_{-\infty}^{\infty} g^*(x)\,x\,f(x)\,dx\right]^*
+\label{eq:aula7_X_hermitiano4}
+\end{equation}
+\begin{equation}
+= \int_{-\infty}^{\infty} g(x)\,x\,f^*(x)\,dx
+\label{eq:aula7_X_hermitiano5}
+\end{equation}
+(aqui não temos os termos de superfície para atrapalhar).
+
+\subsubsection*{O comutador $[\hat{X},\hat{K}]$}
+
+Vimos que $\bra{x}\hat{X}\ket{f} = x f(x)$ e $\bra{x}\hat{K}\ket{f} = -i\dfrac{df}{dx}$.
+
+Então
+\begin{equation}
+\bra{x}\hat{X}\hat{K}\ket{f} = x\underbrace{\left(-i\frac{df}{dx}\right)}_{\text{ket associado à função } -i\,df/dx}
+\label{eq:aula7_XK}
+\end{equation}
+\begin{equation}
+\bra{x}\hat{K}\hat{X}\ket{f} = \underbrace{-i\frac{d}{dx}\big(x f(x)\big)}_{\text{ket associado à função } x f(x)} = -i f(x) - i\,x\,\frac{df}{dx}
+\label{eq:aula7_KX}
+\end{equation}
+
+Portanto
+\begin{equation}
+\bra{x}\hat{X}\hat{K} - \hat{K}\hat{X}\ket{f} = \bra{x}\hat{X}\hat{K}\ket{f} - \bra{x}\hat{K}\hat{X}\ket{f}
+\label{eq:aula7_comutador_passo1}
+\end{equation}
+\begin{equation}
+= i\,f(x)
+\label{eq:aula7_comutador_passo2}
+\end{equation}
+\begin{equation}
+= i\braket{x}{f} = \bra{x}i\hat{I}\ket{f}
+\label{eq:aula7_comutador_passo3}
+\end{equation}
+
+Como $\bra{x}$ e $\ket{f}$ podem ser quaisquer, temos a igualdade de OPERADORES
+\begin{equation}
+\boxed{[\hat{X},\hat{K}] = i\hat{I}}
+\label{eq:aula7_comutador}
+\end{equation}
+
+Esses dois operadores Hermitianos, no EV de dimensão infinita associado às funções complexas dos tipos
+\begin{enumerate}
+\item[(i)] $\displaystyle\int_{-\infty}^{\infty}|f(x)|^2\,dx < \infty$ \quad (normalizáveis)
+\item[(ii)] não-normalizáveis (porém não-divergentes no infinito)
+\end{enumerate}
+são os operadores básicos da MQ.
+
+\subsection*{Exemplo 1.10.1 --- Aplicação à equação de onda}
+
+Mostramos no exemplo 1.8.6 como formular o problema de 2 EDOs acopladas usando um EV de dimensão 2. Veremos agora como formular o problema de uma EDP (Equação Diferencial Parcial) usando um EV de dimensão infinita.
+
+\begin{equation}
+\frac{\partial^2 \Psi}{\partial t^2} = \frac{\partial^2 \Psi}{\partial x^2}
+\label{eq:aula7_eq_onda}
+\end{equation}
+é a equação de onda que governa a evolução temporal de uma deformação em uma corda. $\Psi(x,t)$ é o deslocamento vertical do ponto $x$ da corda no instante $t$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+\draw[-{Stealth[length=2mm]}] (0,0) -- (5.5,0) node[right] {$x$};
+\draw[-{Stealth[length=2mm]}] (0,-0.4) -- (0,1.2);
+\draw[domain=0:5,smooth,variable=\x] plot ({\x},{0.5*sin(60*\x)}) ;
+\draw[dashed] (2,0) -- (2,{0.5*sin(120)});
+\node at (2,-0.3) {$x$};
+\node at (5,-0.3) {$L$};
+\node at (2.3,0.65) {$\Psi(x,t)$};
+\end{tikzpicture}
+\end{center}
+
+Compare com o sistema de EDOs
+\begin{equation}
+\begin{bmatrix} \overset{..}{x}_1 \\ \overset{..}{x}_2 \end{bmatrix}
+= \hat{\Omega} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+\label{eq:aula7_sistema_edo}
+\end{equation}
+
+É como se a Eq.\ de onda fosse um sistema de infinitas EDOs, uma para cada ponto $x$ da corda.
+
+Pensaremos em $\Psi(x,t)$ como $\braket{x}{\Psi(t)}$, assim como usamos $x_1(t) = \braket{1}{X(t)}$ e $x_2(t) = \braket{2}{X(t)}$.
+\begin{equation}
+\frac{\partial^2 \Psi}{\partial x^2} = -\bra{x}\hat{K}\hat{K}\ket{\Psi(t)}
+\label{eq:aula7_d2psi_dx2}
+\end{equation}
+
+Portanto a Eq.\ de onda é a equação abstrata
+\begin{equation}
+\boxed{\frac{d^2}{dt^2}\ket{\Psi(t)} = -\hat{K}^2\ket{\Psi(t)}}
+\label{eq:aula7_eq_onda_abstrata}
+\end{equation}
+projetada nos bras $\bra{x}$. Compare com
+\begin{equation}
+\frac{d^2}{dt^2}\ket{X(t)} = \hat{\Omega}\ket{X(t)}
+\label{eq:aula7_eq_outro_exemplo}
+\end{equation}
+do outro exemplo.
+
+\subsubsection*{Autovetores e autovalores de $-\hat{K}^2$}
+
+(Observe que o tipo de função do EV determina ao mesmo tempo os autovetores e os autovalores, através da condição $\Psi(0)=\Psi(L)=0$.)
+
+Determinamos os autovetores e autovalores de $-\hat{K}^2$:
+\begin{equation}
+\hat{K}^2\ket{\Psi} = k^2\ket{\Psi} \qquad \hookrightarrow \text{os autovalores serão positivos}
+\label{eq:aula7_K2_autovalor}
+\end{equation}
+(se tentasse autovalores negativos, você veria que $\psi_k(x) = A e^{\kappa x} + B e^{-\kappa x}$ não pertenceria ao EV)
+
+Projetando com $\bra{x}$:
+\begin{equation}
+-\frac{d^2}{dx^2}\psi_k(x) = k^2\,\psi_k(x)
+\label{eq:aula7_K2_edo}
+\end{equation}
+cuja solução é
+\begin{equation}
+\psi_k(x) = A\cos(kx) + B\sin(kx)
+\label{eq:aula7_K2_solucao}
+\end{equation}
+
+Como nosso EV só contempla funções tais que $\Psi(0) = \Psi(L) = 0$, temos
+\begin{align}
+\psi_k(0) &= A = 0 \label{eq:aula7_cc_0}\\
+\psi_k(L) &= B\sin(kL) = 0 \;\Rightarrow\; k = \frac{m\pi}{L} \quad (m=1,2,3,\dots) \label{eq:aula7_cc_L}
+\end{align}
+(Os valores negativos de $k$ produzem as mesmas autofunções.)
+
+Descobrimos os autovetores e autovalores:
+\begin{equation}
+\boxed{\hat{K}^2\ket{m} = \frac{m^2\pi^2}{L^2}\ket{m} \qquad \text{onde} \qquad \braket{x}{m} = \sqrt{\frac{2}{L}}\sin\left(\frac{m\pi x}{L}\right)}
+\label{eq:aula7_K2_autovetores}
+\end{equation}
+
+Observe que os autovalores são reais e que os autovetores são ortonormais:
+\begin{equation}
+\braket{m}{m'} = \int_0^L \braket{m}{x}\braket{x}{m'}\,dx = \int_0^L \frac{2}{L}\sin\left(\frac{m\pi x}{L}\right)\sin\left(\frac{m'\pi x}{L}\right)dx = \delta_{m,m'} \quad \text{(faça a integral)}
+\label{eq:aula7_K2_ortonormalidade}
+\end{equation}
+
+Esses $\{\ket{m}\}$ são análogos aos $\ket{I}$ e $\ket{II}$ do exemplo anterior.
+
+\begin{equation}
+\frac{d^2}{dt^2}\ket{\Psi(t)} = -\hat{K}^2\ket{\Psi(t)}
+\label{eq:aula7_eq_temporal}
+\end{equation}
+Projetando com $\bra{m}$:
+\begin{equation}
+\frac{d^2}{dt^2}\braket{m}{\Psi(t)} = -\frac{m^2\pi^2}{L^2}\braket{m}{\Psi(t)}
+\label{eq:aula7_eq_temporal_projetada}
+\end{equation}
+Uma EDO simples! A derivada $\partial^2/\partial x^2$ desapareceu!
+
+Solução:
+\begin{equation}
+\braket{m}{\Psi(t)} = \braket{m}{\Psi(0)}\cos\left(\frac{m\pi t}{L}\right)
+\label{eq:aula7_solucao_temporal}
+\end{equation}
+onde supus que a corda está parada em $t=0$ (senão teria que acrescentar $B\sin\!\left(\dfrac{m\pi t}{L}\right)$ e determinar $B$ das velocidades iniciais).
+
+Assim como $\ket{I}$ e $\ket{II}$, autovetores de $\hat{\Omega}$ Hermitiano, formavam uma base ortonormal do EV de dimensão 2, os $\{\ket{m}\}$, autovetores de $\hat{K}^2$, formam uma base ortonormal no EV de dimensão infinita
+\begin{equation}
+\hat{I} = \sum_{m=1}^{\infty}\ket{m}\bra{m} \qquad \braket{m}{m'} = \delta_{mm'}
+\label{eq:aula7_identidade_m}
+\end{equation}
+
+Assim:
+\begin{equation}
+\boxed{\ket{\Psi(t)} = \sum_{m=1}^{\infty}\ket{m}\braket{m}{\Psi(t)} = \sum_{m=1}^{\infty}\cos(\omega_m t)\,\ket{m}\braket{m}{\Psi(0)}}
+\label{eq:aula7_psi_t}
+\end{equation}
+
+\subsection*{O operador de evolução e o propagador}
+
+O operador de evolução fica
+\begin{equation}
+\hat{U}(t) = \sum_{m=1}^{\infty}\cos(\omega_m t)\,\ket{m}\bra{m} \qquad \left(\omega_m = \frac{m\pi}{L}\right)
+\label{eq:aula7_operador_evolucao}
+\end{equation}
+
+O propagador na base $\ket{x}$ é obtido facilmente:
+\begin{equation}
+\braket{x}{\Psi(t)} = \bra{x}\hat{U}(t)\ket{\Psi(0)}
+\label{eq:aula7_propagador_def}
+\end{equation}
+\begin{equation}
+= \int_0^L \underbrace{\bra{x}\hat{U}(t)\ket{x'}}_{\text{propagador}}\braket{x'}{\Psi(0)}\,dx'
+\label{eq:aula7_propagador_integral}
+\end{equation}
+
+O propagador não pode ser escrito como uma matriz (como no caso do EV de dimensão finita); no entanto,
+\begin{equation}
+\bra{x}\hat{U}(t)\ket{x'} = \sum_{m=1}^{\infty}\cos(\omega_m t)\,\braket{x}{m}\braket{m}{x'}
+\label{eq:aula7_propagador_soma1}
+\end{equation}
+\begin{equation}
+= \sum_{m=1}^{\infty}\left(\frac{2}{L}\right)\cos(\omega_m t)\,\sin\left(\frac{m\pi x}{L}\right)\sin\left(\frac{m\pi x'}{L}\right)
+\label{eq:aula7_propagador_soma2}
+\end{equation}
+
+Finalmente:
+\begin{equation}
+\boxed{\Psi(x,t) = \int_0^L \left[\underbrace{\sum_{m=1}^{\infty}\frac{2}{L}\cos(\omega_m t)\sin\left(\frac{m\pi x}{L}\right)\sin\left(\frac{m\pi x'}{L}\right)}_{\text{propagador}}\right]\Psi(x',0)\,dx'}
+\label{eq:aula7_psi_xt_final}
+\end{equation}
+onde $\Psi(x,t)$ (à esquerda) é a forma da corda no instante $t$, e $\Psi(x,0)$ (dentro da integral) é a forma inicial da corda.
+
+Compare com
+\begin{equation}
+\begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix}
+=
+\begin{bmatrix}
+\tfrac{1}{2}\cos\omega_I t + \tfrac{1}{2}\cos\omega_{II}t & \tfrac{1}{2}\cos\omega_I t - \tfrac{1}{2}\cos\omega_{II}t \\[4pt]
+\tfrac{1}{2}\cos\omega_I t - \tfrac{1}{2}\cos\omega_{II}t & \tfrac{1}{2}\cos\omega_I t + \tfrac{1}{2}\cos\omega_{II}t
+\end{bmatrix}
+\begin{bmatrix} x_1(0) \\ x_2(0) \end{bmatrix}
+\label{eq:aula7_comparacao_matriz}
+\end{equation}
+
+\subsection*{O operador identidade: base discreta vs.\ base contínua}
+
+Vimos duas maneiras de escrever o operador $\hat{I}$ (no EV das funções em 1D):
+\begin{equation}
+\hat{I} = \int_{-\infty}^{\infty} dx\,\ket{x}\bra{x} = \int_{-\infty}^{\infty} dk\,\ket{k}\bra{k}
+\label{eq:aula7_identidade_duas_formas}
+\end{equation}
+
+Dizemos que os autovetores de $\hat{X}$ e $\hat{K}$ formam uma BASE CONTÍNUA (o rótulo dos vetores é uma variável contínua).
+
+Essencial aqui é o fato de que a base contínua é ortonormal (por isso o operador $\hat{I}$ se escreve como uma soma simples de "borboletas"):
+\begin{equation}
+\braket{x}{x'} = \delta(x-x') \qquad \text{e} \qquad \braket{k}{k'} = \delta(k-k')
+\label{eq:aula7_ortonormalidade_continua}
+\end{equation}
+
+Um conjunto restrito de "borboletas" de vetores ortonormalizados constitui um PROJETOR. Por exemplo:
+\begin{equation}
+\hat{P} = \int_a^b dx\,\ket{x}\bra{x} \quad \text{é um projetor.}
+\label{eq:aula7_projetor}
+\end{equation}
+
+Se $\ket{f}$ é o ket associado à função $f(x) = \braket{x}{f}$, então a função correspondente a $\hat{P}\ket{f}$ é
+\begin{equation}
+f_P(x) = \bra{x}\hat{P}\ket{f} = \int_a^b dx'\,\braket{x}{x'}\braket{x'}{f} = \int_a^b dx'\,\delta(x-x')\,f(x')
+\label{eq:aula7_projetor_acao}
+\end{equation}
+
+\begin{equation}
+f_P(x) =
+\begin{cases}
+f(x), & \text{se } x \in [a,b] \\
+0, & \text{se } x \notin [a,b]
+\end{cases}
+\label{eq:aula7_projetor_resultado}
+\end{equation}
+
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Observação:} o projetor $\hat{P} = \int_a^b dx\,\ket{x}\bra{x}$ atua "recortando" a função $f(x)$, mantendo seus valores apenas no intervalo $[a,b]$ e anulando-a fora desse intervalo. Esquematicamente, o gráfico de $f(x)$ (uma curva suave) dá origem ao gráfico de $f_P(x)$, que coincide com $f(x)$ em $[a,b]$ e é nulo fora dele, apresentando em geral uma descontinuidade nos pontos $x=a$ e $x=b$.
+}}

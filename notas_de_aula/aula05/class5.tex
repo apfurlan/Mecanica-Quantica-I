@@ -1,0 +1,399 @@
+\section*{(5\textordfeminine\ aula) --- Matrizes Hermitianas e Unitárias: Diagonalização Simultânea}
+
+\subsection*{Matrizes Hermitianas e Unitárias (seção 1.8)}
+
+Vimos que os autovalores de operadores Hermitianos são REAIS e que autovalores de operadores Unitários são do tipo $e^{i\theta}$.
+
+Vimos também que os autovetores de ambos operadores são mutuamente ortogonais (no caso de haver subespaços degenerados, você é livre para escolher, dentro do subespaço, um conjunto ortogonal).
+
+Um operador $\hat{\Omega}$ (Hermitiano ou Unitário) em $\mathbb{V}^n(\mathbb{C})$ terá $n$ autovetores $\{\ket{w_i}\}$ que podem ser assumidos ortonormais
+\begin{equation}
+    \braket{w_i}{w_j} = \delta_{ij}
+\end{equation}
+
+Esses autovetores podem ser usados como base ortonormal de $\mathbb{V}^n(\mathbb{C})$, em lugar da base ortonormal original $\{\ket{i}\}$.
+
+O operador que transforma os $\{\ket{i}\}$ nos $\{\ket{w_i}\}$ é um operador unitário
+\begin{equation}
+    \ket{w_i} = \hat{U}\ket{i}
+\end{equation}
+
+\fbox{\parbox{0.92\textwidth}{
+Note que
+\[
+\sum_{i=1}^n \ket{i}\bra{i} = \hat{I} \qquad \text{e} \qquad \sum_{i=1}^n \ket{w_i}\bra{w_i} = \hat{I}
+\]
+}}
+
+os elementos de matriz de $\hat{U}$ na base original são
+\begin{equation}
+    \bra{j}\hat{U}\ket{i} = \braket{j}{w_i} \quad \leftarrow \text{componentes dos autovetores}
+\end{equation}
+
+\[
+\hat{U} \leftrightarrow
+\underbrace{
+\begin{bmatrix}
+\braket{1}{w_1} & \braket{1}{w_2} & \cdots & \braket{1}{w_n} \\
+\braket{2}{w_1} & \braket{2}{w_2} & \cdots & \braket{2}{w_n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\braket{n}{w_1} & \braket{n}{w_2} & \cdots & \braket{n}{w_n}
+\end{bmatrix}
+}_{\substack{\uparrow \\ \text{componentes de } \ket{w_1} \quad \text{componentes de } \ket{w_2}}}
+\]
+
+Na base de autovetores ortonormais, o operador fica diagonal
+\begin{equation}
+    \hat{\Omega} \leftrightarrow
+    \begin{bmatrix}
+    w_1 & & & \bigZero \\
+    & w_2 & & \\
+    & & \ddots & \\
+    \bigZero & & & w_n
+    \end{bmatrix}
+\end{equation}
+
+pois
+\begin{equation}
+    \bra{w_i}\hat{\Omega}\ket{w_j} = w_j \braket{w_i}{w_j} = w_j \delta_{ij}
+\end{equation}
+
+\begin{equation}
+    \bra{w_i}\hat{\Omega}\ket{w_j} = \bra{i}\hat{U}^\dagger \hat{\Omega} \hat{U}\ket{j} \quad \text{é uma matriz diagonal.}
+\end{equation}
+$\bra{i}\hat{\Omega}\ket{j}$ não é uma matriz diagonal.
+
+\textbf{Obs:} Uma matriz genérica $n \times n$ não possui necessariamente $n$ autovetores como ocorre com MATRIZES HERMITIANAS E UNITÁRIAS. Veja o exemplo
+
+\begin{equation}
+    \Omega = \begin{bmatrix} 4 & 1 \\ -1 & 2 \end{bmatrix}
+    \quad \Longrightarrow \quad
+    \Omega - \omega I = \begin{bmatrix} 4-\omega & 1 \\ -1 & 2-\omega \end{bmatrix}
+\end{equation}
+
+Eq. característica: $(4-\omega)(2-\omega) + 1 = 0 \Rightarrow \omega = \{3, 3\}$
+
+Autovetores: (substitua $\omega = 3$ em $\Omega - \omega I$)
+\begin{equation}
+    \begin{bmatrix} 1 & 1 \\ -1 & -1 \end{bmatrix}
+    \begin{bmatrix} v_1 \\ v_2 \end{bmatrix}
+    =
+    \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+    \quad \Longrightarrow \quad v_1 = -v_2
+\end{equation}
+
+\begin{align}
+    \ket{w=3} &= (-v_2)\ket{1} + v_2\ket{2} \notag \\
+    &= v_2 \left[ -\ket{1} + \ket{2} \right]
+\end{align}
+
+Só há um autovetor LI. Isso nunca aconteceria com matrizes Hermitianas ou Unitárias $2\times 2$, onde você encontraria 2 autovetores LI.
+
+\subsection*{Diagonalização Simultânea}
+
+Quando dois operadores COMUTAM, $\hat{\Omega}\hat{\Lambda} = \hat{\Lambda}\hat{\Omega}$, a ordem dos operadores não é importante.
+
+Se os dois operadores são Hermitianos (o que vou mostrar se aplicaria também a operadores Unitários) E COMUTAM, é possível achar uma base ortonormal de autovetores \underline{simultâneos} de ambos operadores.
+
+Quando um dos operadores, $\hat{\Omega}$ por exemplo, é não degenerado, sua base de autovetores é bem definida e diagonaliza AMBOS operadores. Veja.
+
+\begin{equation}
+    \bra{w_i}\hat{\Omega}\ket{w_j} = w_j \braket{w_i}{w_j} = w_j \delta_{ij}
+\end{equation}
+
+A ação de $\hat{\Lambda}$ nos vetores $\ket{w_j}$:
+\begin{equation}
+    \hat{\Omega}\left[\hat{\Lambda}\ket{w_j}\right] = \hat{\Lambda}\left[\hat{\Omega}\ket{w_j}\right] = w_j \left[\hat{\Lambda}\ket{w_j}\right]
+\end{equation}
+(devido a $\hat{\Omega}\hat{\Lambda} = \hat{\Lambda}\hat{\Omega}$)
+
+a conclusão é que $\hat{\Lambda}\ket{w_j}$ é um autovetor de $\hat{\Omega}$ com autovalor $w_j$; como esse autovalor é não degenerado por hipótese, $\hat{\Lambda}\ket{w_j}$ deve ser um múltiplo de $\ket{w_j}$:
+\begin{equation}
+    \hat{\Lambda}\ket{w_j} = \lambda_j \ket{w_j}
+\end{equation}
+($\ket{w_j}$ também é autovetor de $\hat{\Lambda}$)
+
+portanto
+\begin{equation}
+    \bra{w_i}\hat{\Lambda}\ket{w_j} = \lambda_j \braket{w_i}{w_j} = \lambda_j \delta_{ij} \quad \text{é diagonal}
+\end{equation}
+
+\[
+\hat{\Omega} \leftrightarrow
+\begin{bmatrix}
+w_1 & & \bigZero \\
+& w_2 & \\
+\bigZero & & \ddots \\
+& & & w_n
+\end{bmatrix}
+\qquad
+\hat{\Lambda} \leftrightarrow
+\begin{bmatrix}
+\lambda_1 & & \bigZero \\
+& \lambda_2 & \\
+\bigZero & & \ddots \\
+& & & \lambda_n
+\end{bmatrix}
+\]
+na base $\ket{w_i}$ do operador não degenerado.
+
+\textbf{Obs:} Note que $\hat{\Lambda}$ pode ter autovalores degenerados (alguns dos $\lambda_i$ podem ser iguais), a hipótese foi que $\hat{\Omega}$ não tinha autovalores degenerados.
+
+E se tanto $\hat{\Omega}$ quanto $\hat{\Lambda}$ têm autovalores degenerados?
+
+Nesse caso a base de autovetores de $\hat{\Omega}$, por exemplo, não é única. Dentro dos subespaços degenerados temos liberdade de escolher vetores ortogonais. Imagine que uma escolha foi feita.
+\begin{equation}
+    \hat{\Omega}\ket{w_i, \alpha} = w_i \ket{w_i, \alpha} \qquad (\alpha = 1, 2, \dots, m_i)
+\end{equation}
+esses são os $m_i$ autovetores ortonormais associados ao autovalor degenerado $w_i$.
+
+Nessa base, $\hat{\Omega}$ é diagonal. E quanto a $\hat{\Lambda}$?
+\begin{equation}
+    \hat{\Omega}\left[\hat{\Lambda}\ket{w_i, \alpha}\right] = \hat{\Lambda}\left[\hat{\Omega}\ket{w_i, \alpha}\right] = w_i \left[\hat{\Lambda}\ket{w_i, \alpha}\right]
+\end{equation}
+(pois $\hat{\Omega}\hat{\Lambda} = \hat{\Lambda}\hat{\Omega}$)
+
+Vemos que $\hat{\Lambda}\ket{w_i,\alpha}$ ainda pertence ao subespaço degenerado associado ao autovalor $w_i$. Por isso podemos concluir apenas que $\hat{\Lambda}$ não tem elemento de matriz entre vetores de subespaços degenerados distintos.
+\begin{equation}
+    \bra{w_j, \beta} \hat{\Lambda} \ket{w_i, \alpha} = 0 \qquad (w_i \neq w_j)
+\end{equation}
+
+A matriz associada a $\hat{\Lambda}$ na base escolhida fica DIAGONAL POR BLOCOS
+\[
+\hat{\Lambda} \leftrightarrow
+\begin{bmatrix}
+\Lambda_1 & & & \bigZero \\
+& \Lambda_2 & & \\
+\bigZero & & \ddots & \\
+& & & \Lambda_n
+\end{bmatrix}
+\]
+
+Temos tantos blocos quanto autovalores $w_i$ DISTINTOS.
+
+A dimensão das matrizes é igual à dimensão do subespaço associado ao autovalor $w_i$; em particular, se o autovalor é não degenerado, a matriz é um número apenas.
+
+Os blocos são matrizes Hermitianas e podemos reconstruir os vetores $\ket{w_i, \alpha}$, definindo um novo conjunto de vetores ortogonais, para tornar os blocos diagonais.
+
+Dentro de cada subespaço degenerado de $\hat{\Omega}$ mudamos de base ortonormal
+\[
+\ket{w_i, \alpha} \to \ket{w_i, a} \qquad (\alpha = 1, \dots, m_i) \quad (a = 1, \dots, m_i)
+\]
+
+$\hat{\Omega}$ continua diagonal e $\hat{\Lambda}$ se torna diagonal (por hipótese)
+\begin{equation}
+    \hat{\Lambda}\ket{w_i, a} = \lambda_i^{(a)} \ket{w_i, a} \qquad (a = 1, \dots, m_i)
+\end{equation}
+
+Se os autovalores de $\hat{\Lambda}$ nos subespaços $w_i$ são todos diferentes, podemos caracterizar a base informando os autovalores $w$ e $\lambda$. Mudamos o nome de $\ket{w_i, a}$ para $\ket{w_i, \lambda_i^a}$. Dizemos que $\hat{\Omega}$ e $\hat{\Lambda}$ constituem um \textbf{CONJUNTO COMPLETO DE OPERADORES QUE COMUTAM}.
+
+Caso alguns dos $\lambda_i^a$ sejam iguais, a informação dos autovalores não especifica unicamente um estado.
+
+\subsection*{Exemplo}
+
+Em uma base $\ket{1}, \ket{2}, \ket{3}$ ortonormal temos duas matrizes Hermitianas.
+\begin{equation}
+    \Omega = \begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+    \qquad
+    \Lambda = \begin{bmatrix} -1 & 1 & 0 \\ 1 & -1 & 0 \\ 0 & 0 & 3 \end{bmatrix}
+\end{equation}
+
+Verifique que $\Omega\Lambda = \Lambda\Omega$. Veja que a base já diagonaliza $\Omega$ e deixa $\Lambda$ na forma em bloco.
+
+Encontre autovetores de $\Lambda$ no subespaço $\{\ket{1}, \ket{2}\}$ associado ao autovalor $w=2$.
+
+\begin{equation}
+    \det \begin{bmatrix} -1-\lambda & 1 \\ 1 & -1-\lambda \end{bmatrix} = 0
+    \quad \Longrightarrow \quad
+    (1+\lambda)^2 - 1 = 0
+    \quad \Longrightarrow \quad
+    \lambda = \{0, -2\}
+\end{equation}
+
+$(\lambda = 0)$
+\begin{equation}
+    \begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix}
+    \begin{bmatrix} v_1 \\ v_2 \end{bmatrix}
+    =
+    \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+    \quad \Longrightarrow \quad
+    \ket{\lambda=0, w=2} = \frac{1}{\sqrt{2}}\ket{1} + \frac{1}{\sqrt{2}}\ket{2}
+\end{equation}
+
+$(\lambda = -2)$
+\begin{equation}
+    \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}
+    \begin{bmatrix} v_1 \\ v_2 \end{bmatrix}
+    =
+    \begin{bmatrix} 0 \\ 0 \end{bmatrix}
+    \quad \Longrightarrow \quad
+    \ket{\lambda=-2, w=2} = \frac{1}{\sqrt{2}}\ket{1} - \frac{1}{\sqrt{2}}\ket{2}
+\end{equation}
+
+Finalmente, $\ket{\lambda=3, w=1} = \ket{3}$. Nessa base $\ket{\lambda, w}$ ortonormal temos:
+
+\begin{equation}
+    \Omega \leftrightarrow \begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+    \qquad
+    \Lambda \leftrightarrow \begin{bmatrix} 0 & 0 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 3 \end{bmatrix}
+\end{equation}
+
+\fbox{\parbox{0.92\textwidth}{
+\textbf{Lembre:} Quando dois operadores comutam, a ação de um deles em um vetor dentro de um subespaço degenerado do outro resulta em um vetor dentro do mesmo subespaço.
+\begin{equation}
+    \hat{\Omega}\left[\hat{\Lambda}\ket{w_i, \alpha}\right] = \hat{\Lambda}\left[\hat{\Omega}\ket{w_i, \alpha}\right] = w_i \left[\hat{\Lambda}\ket{w_i, \alpha}\right]
+\end{equation}
+\[
+\Longrightarrow \quad \hat{\Lambda}\ket{w_i, \alpha} \text{ permanece no subespaço do autovalor } w_i
+\]
+}}
+
+\subsection*{Exemplo 1.8.6}
+
+Esse exemplo ilustra a maneira como vetores, operadores, autovalores, etc. aparecem em Mecânica Quântica. O exemplo vem extraído da Mecânica Clássica.
+
+\begin{center}
+(duas massas $m$ ligadas por três molas de constante $k$ entre paredes fixas, com deslocamentos $x_1$ e $x_2$ em relação às posições de equilíbrio)
+\end{center}
+
+Vamos estudar as oscilações lineares dessas duas massas. $x_1(t)$ e $x_2(t)$ são o que queremos determinar. Essas funções medem a distância das massas aos pontos de equilíbrio.
+
+A equação que determina $x_1(t)$ e $x_2(t)$
+\begin{equation}
+    \begin{cases}
+        m\ddot{x}_1 = -2kx_1 + kx_2 \\
+        m\ddot{x}_2 = kx_1 - 2kx_2
+    \end{cases}
+\end{equation}
+
+Em forma matricial
+\begin{equation}
+    \frac{d^2}{dt^2} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+    =
+    \begin{bmatrix} -2k/m & k/m \\ k/m & -2k/m \end{bmatrix}
+    \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+\end{equation}
+
+Assim como
+\[
+\begin{bmatrix} v_1' \\ \vdots \\ v_n' \end{bmatrix}
+=
+\begin{bmatrix} \Omega_{11} & \Omega_{12} & \cdots & \Omega_{1n} \\ \vdots & & & \vdots \\ \Omega_{n1} & \cdots & & \Omega_{nn} \end{bmatrix}
+\begin{bmatrix} v_1 \\ \vdots \\ v_n \end{bmatrix}
+\]
+é a versão matricial de $\ket{V'} = \hat{\Omega}\ket{V}$, na base $\{\ket{i}\}$, podemos dizer que a equação diferencial é a versão matricial da equação abstrata
+\begin{equation}
+    \frac{d^2}{dt^2}\ket{x(t)} = \hat{\Omega}\ket{x(t)}
+\end{equation}
+na base ortonormal $\ket{1}, \ket{2}$. Por exemplo, $x_1(t) = \braket{1}{x(t)}$, $\Omega_{11} = -\dfrac{2k}{m} = \bra{1}\hat{\Omega}\ket{1}$, etc.
+
+Como $\hat{\Omega}$ é Hermitiano, vamos tentar usar seus autovetores como base para simplificar o problema.
+
+\begin{equation}
+    \det \begin{bmatrix} -2k/m - \omega & k/m \\ k/m & -2k/m - \omega \end{bmatrix} = 0
+    \quad \Longrightarrow \quad
+    \omega = \left\{ -\frac{3k}{m}, -\frac{k}{m} \right\}
+\end{equation}
+
+$\omega = -\dfrac{k}{m}$ tem autovetor $\ket{I} = \dfrac{1}{\sqrt{2}}\ket{1} + \dfrac{1}{\sqrt{2}}\ket{2}$
+
+$\omega = -\dfrac{3k}{m}$ tem autovetor $\ket{II} = \dfrac{1}{\sqrt{2}}\ket{1} - \dfrac{1}{\sqrt{2}}\ket{2}$
+
+na base $\ket{I}, \ket{II}$ (ortonormal) a equação abstrata fica
+\begin{equation}
+    \frac{d^2}{dt^2} \begin{bmatrix} x_I \\ x_{II} \end{bmatrix}
+    =
+    \begin{bmatrix} -k/m & 0 \\ 0 & -3k/m \end{bmatrix}
+    \begin{bmatrix} x_I \\ x_{II} \end{bmatrix}
+\end{equation}
+
+ou
+\begin{equation}
+    \begin{cases}
+        \ddot{x}_I = -\dfrac{k}{m} x_I \\[4pt]
+        \ddot{x}_{II} = -\dfrac{3k}{m} x_{II}
+    \end{cases}
+    \quad \Longrightarrow \quad
+    \begin{cases}
+        x_I(t) = x_I(0) \cos\left( \sqrt{\dfrac{k}{m}}\, t \right) \\[4pt]
+        x_{II}(t) = x_{II}(0) \cos\left( \sqrt{\dfrac{3k}{m}}\, t \right)
+    \end{cases}
+    \label{eq:aula5_solucao_normal}
+\end{equation}
+
+onde usei que as massas estavam paradas em $t=0$ (senão teria que incluir $\dot{x}_I(0)\sqrt{\dfrac{m}{k}}\sin\left(\sqrt{\dfrac{k}{m}}t\right)$ etc.)
+
+\begin{center}
+\boxed{\Rightarrow \text{ A solução do problema usando a base de autovetores de } \hat{\Omega} \text{ é muito mais simples!}}
+\end{center}
+
+Escrevo a solução na forma matricial
+\begin{equation}
+    \begin{bmatrix} x_I(t) \\ x_{II}(t) \end{bmatrix}
+    =
+    \begin{bmatrix} \cos\sqrt{\dfrac{k}{m}}\, t & 0 \\[6pt] 0 & \cos\sqrt{\dfrac{3k}{m}}\, t \end{bmatrix}
+    \begin{bmatrix} x_I(0) \\ x_{II}(0) \end{bmatrix}
+\end{equation}
+
+essa matriz que fornece valores futuros de $x_I$ e $x_{II}$ a partir dos valores iniciais se chama \textbf{PROPAGADOR}.
+
+Assim como fizemos antes, podemos ver essa equação matricial como a versão em componentes na base $\ket{I}, \ket{II}$ da equação abstrata
+\begin{equation}
+    \ket{x(t)} = \hat{U}(t) \ket{x(0)}
+\end{equation}
+
+onde $\hat{U}(t)$ se chama \textbf{OPERADOR DE EVOLUÇÃO}.
+
+Como obter os $x_1(t)$ e $x_2(t)$ originais? Perceba que a versão "em borboletas" (notação de projetores) do operador $\hat{U}(t)$ é
+\begin{equation}
+    \hat{U}(t) = \cos\left(\sqrt{\frac{k}{m}}\, t\right) \ket{I}\bra{I} + \cos\left(\sqrt{\frac{3k}{m}}\, t\right) \ket{II}\bra{II}
+    \label{eq:aula5_operador_evolucao}
+\end{equation}
+
+Podemos obter a matriz desse operador na base $\ket{1}, \ket{2}$ usando os produtos internos conhecidos.
+
+\[
+\braket{1}{I} = \frac{1}{\sqrt{2}} \qquad \braket{1}{II} = \frac{1}{\sqrt{2}} \qquad \braket{2}{I} = \frac{1}{\sqrt{2}} \qquad \braket{2}{II} = -\frac{1}{\sqrt{2}}
+\]
+
+\begin{align}
+    \bra{1}\hat{U}(t)\ket{1} &= \frac{1}{2}\cos(\omega_I t) + \frac{1}{2}\cos(\omega_{II} t) \\
+    \bra{1}\hat{U}(t)\ket{2} &= \frac{1}{2}\cos(\omega_I t) - \frac{1}{2}\cos(\omega_{II} t) \qquad \text{onde } \omega_I = \sqrt{\frac{k}{m}} \\
+    \bra{2}\hat{U}(t)\ket{1} &= \frac{1}{2}\cos(\omega_I t) - \frac{1}{2}\cos(\omega_{II} t) \qquad \text{e } \omega_{II} = \sqrt{\frac{3k}{m}} \\
+    \bra{2}\hat{U}(t)\ket{2} &= \frac{1}{2}\cos(\omega_I t) + \frac{1}{2}\cos(\omega_{II} t)
+\end{align}
+
+Na base $\ket{1}, \ket{2}$, a equação $\ket{x(t)} = \hat{U}(t)\ket{x(0)}$ fica
+\begin{equation}
+    \begin{bmatrix} x_1(t) \\ x_2(t) \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \dfrac{\cos\omega_I t + \cos\omega_{II} t}{2} & \dfrac{\cos\omega_I t - \cos\omega_{II} t}{2} \\[8pt]
+    \dfrac{\cos\omega_I t - \cos\omega_{II} t}{2} & \dfrac{\cos\omega_I t + \cos\omega_{II} t}{2}
+    \end{bmatrix}
+    \begin{bmatrix} x_1(0) \\ x_2(0) \end{bmatrix}
+    \label{eq:aula5_propagador_x1x2}
+\end{equation}
+
+\begin{center}
+\boxed{\Rightarrow \text{ O operador de evolução abstrato \eqref{eq:aula5_operador_evolucao} tem uma forma simples na base de autovetores de } \hat{\Omega} \text{ e podemos encontrar sua matriz em qualquer base posteriormente.}}
+\end{center}
+
+\subsection*{Conexão com a Mecânica Quântica}
+
+A Equação de evolução dos estados quânticos é muito parecida com essa equação que vimos no exemplo. Sua versão abstrata é
+\begin{equation}
+    i\hbar \frac{d}{dt} \ket{\Psi(t)} = \hat{H} \ket{\Psi(t)}
+    \label{eq:aula5_schrodinger}
+\end{equation}
+
+onde $\hbar = \dfrac{h}{2\pi}$, $\ket{\Psi(t)}$ é o estado da partícula microscópica (que desejamos conhecer), $\hat{H}$ é o operador Hamiltoniano (relacionado à função Hamiltoniana da Mecânica Clássica).
+
+Note que é uma equação de 1\textordfeminine\ ordem, de modo que precisaremos fornecer apenas o estado $\ket{\Psi(0)}$ inicial.
+
+Os autovetores do operador $\hat{H}$ serão cruciais para escrever o operador de evolução como em \eqref{eq:aula5_operador_evolucao}. Esse operador evolui o estado inicial
+\begin{equation}
+    \ket{\Psi(t)} = \hat{U}(t) \ket{\Psi(0)}
+\end{equation}
+
+e é a chave do problema.

@@ -1,0 +1,393 @@
+\section*{(22\textordfeminine\ aula) --- Translações e Rotações de Funções de Onda; Identidade com Autoestados de $\hat{L}^2$ e $\hat{L}_z$}
+
+\subsection*{Translação de uma Função de Onda}
+
+Para obter uma função de onda \textbf{transladada}, a partir de uma função de onda conhecida, faça
+\begin{equation}
+    \widetilde{\Psi}(\vec{r}) = \Psi(\vec{r} - \vec{a}) \qquad (*)
+\label{eq:aula22_translacao_def}
+\end{equation}
+onde $\widetilde{\Psi}$ é o que queremos e $\Psi$ é supostamente conhecida.
+
+Se $\vec{a} = a_x\hat{i} + a_y\hat{j} + a_z\hat{k}$, o significado de $(*)$ é: ``na função $\Psi$ troque $x \to x - a_x$, $y \to y - a_y$ e $z \to z - a_z$''.
+
+É sempre mais fácil fazer isso quando $\Psi$ já está em termos de variáveis cartesianas.
+
+\textbf{Exemplo:} $\Psi(\vec{r}) = R(r)\sin\theta$, com $\vec{a} = a(\hat{i} + \hat{j})$.
+
+Em coordenadas cartesianas (usando $\sin\theta = \sqrt{x^2+y^2}/r$):
+\begin{equation}
+    \Psi(\vec{r}) = R\left(\sqrt{x^2+y^2+z^2}\right) \frac{\sqrt{x^2+y^2}}{\sqrt{x^2+y^2+z^2}}
+\label{eq:aula22_exemplo_trans_cart}
+\end{equation}
+
+Logo, a função transladada é
+\begin{equation}
+    \widetilde{\Psi}(\vec{r}) = R\left(\sqrt{(x-a)^2+(y-a)^2+z^2}\right) \frac{\sqrt{(x-a)^2+(y-a)^2}}{\sqrt{(x-a)^2+(y-a)^2+z^2}}
+\label{eq:aula22_exemplo_trans_final}
+\end{equation}
+
+\subsection*{Rotação de uma Função de Onda}
+
+Para obter uma função de onda \textbf{girada}, faça
+\begin{equation}
+    \widetilde{\Psi}(\vec{r}) = \Psi(R^{-1}\vec{r}) \qquad (**)
+\label{eq:aula22_rotacao_def}
+\end{equation}
+onde $R^{-1}$ é a rotação \textbf{inversa} à rotação da função.
+
+Se $R = R(\alpha, \hat{j})$ (rotação de ângulo $\alpha$ em torno do eixo $\hat{j}$), então o significado de $(**)$ é: ``na função $\Psi$ troque $x \to (\cos\alpha)x - (\sin\alpha)z$, $y \to y$ e $z \to (\sin\alpha)x + (\cos\alpha)z$''. Isso corresponde à matriz de rotação inversa
+\begin{equation}
+    R(\alpha, \hat{j})^{-1} =
+    \begin{bmatrix}
+        \cos\alpha & 0 & -\sin\alpha \\
+        0 & 1 & 0 \\
+        \sin\alpha & 0 & \cos\alpha
+    \end{bmatrix}
+    = R(-\alpha, \hat{j})
+\label{eq:aula22_matriz_rotacao_inversa}
+\end{equation}
+
+\textbf{Exemplo:} $\Psi(\vec{r}) = R(r)\sin\theta = R(r)\dfrac{\sqrt{x^2+y^2}}{r}$.
+
+Escrevemos a função a ser operada em termos de variáveis cartesianas e de $r$ (que permanece \textbf{inalterado}):
+\begin{equation}
+    \widetilde{\Psi}(\vec{r}) = \frac{R(r)}{r}\sqrt{\left[(\cos\alpha)x - (\sin\alpha)z\right]^2 + y^2}
+\label{eq:aula22_exemplo_rot_final}
+\end{equation}
+
+\subsection*{Identidade Usando Autoestados de $\hat{L}^2$ e $\hat{L}_z$}
+
+Duas das formas usuais de escrever o operador identidade são
+\begin{equation}
+    \hat{I} = \int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}dy\int_{-\infty}^{\infty}dz \; \ket{xyz}\bra{xyz} \tag{1}
+\label{eq:aula22_identidade_xyz}
+\end{equation}
+que usa os autoestados simultâneos de $\hat{X}$, $\hat{Y}$ e $\hat{Z}$ (somando sobre todos os autovalores possíveis), e
+\begin{equation}
+    \hat{I} = \int_{-\infty}^{\infty}dp_x\int_{-\infty}^{\infty}dp_y\int_{-\infty}^{\infty}dp_z \; \ket{p_xp_yp_z}\bra{p_xp_yp_z} \tag{2}
+\label{eq:aula22_identidade_pxpypz}
+\end{equation}
+que usa os autoestados simultâneos de $\hat{P}_x$, $\hat{P}_y$ e $\hat{P}_z$.
+
+Esses 2 conjuntos de 3 operadores são exemplos de \textbf{Conjunto Completo de Observáveis que Comutam}.
+
+Claramente os estados $\ket{x_0y_0z_0}$ são bem definidos; sua função de onda (imprópria) é:
+\begin{align}
+    \braket{\vec{r}}{x_0y_0z_0} &= \delta(x-x_0)\delta(y-y_0)\delta(z-z_0) \notag \\
+    &= \delta(\vec{r}-\vec{r}_0)
+\label{eq:aula22_funcao_onda_xyz}
+\end{align}
+
+Similarmente, os estados $\ket{p_xp_yp_z}$ correspondem à função de onda de de Broglie (uma onda plana)
+\begin{equation}
+    \braket{\vec{r}}{p_xp_yp_z} = \frac{e^{i\vec{p}\cdot\vec{r}/\hbar}}{(2\pi\hbar)^{3/2}}
+\label{eq:aula22_funcao_onda_debroglie}
+\end{equation}
+
+O fato de, tanto $\ket{x_0y_0z_0}$ quanto $\ket{p_xp_yp_z}$, serem normalizados no sentido da função delta de Dirac (os autovalores são contínuos):
+\begin{align}
+    \braket{x_0'y_0'z_0'}{x_0y_0z_0} &= \delta(x_0-x_0')\delta(y_0-y_0')\delta(z_0-z_0') \label{eq:aula22_norm_xyz} \\
+    \braket{p_x'p_y'p_z'}{p_xp_yp_z} &= \delta(p_x-p_x')\delta(p_y-p_y')\delta(p_z-p_z') \label{eq:aula22_norm_pxpypz}
+\end{align}
+garante que a identidade pode ser escrita como uma soma sobre todos os autovalores possíveis, na forma mostrada em (1) e (2).
+
+\subsection*{Outra Forma de Escrever a Identidade}
+
+Essas expressões da identidade não são as únicas possíveis. Você poderia usar os autoestados de $\hat{X}$, $\hat{Y}$ e $\hat{P}_z$ (que comutam) para escrever
+\begin{equation}
+    \hat{I} = \int_{-\infty}^{\infty}dx_0\int_{-\infty}^{\infty}dy_0\int_{-\infty}^{\infty}dp_z \; \ket{x_0y_0p_z}\bra{x_0y_0p_z}
+\label{eq:aula22_identidade_xypz}
+\end{equation}
+\underline{soma sobre todos os autovalores possíveis de $\hat{X}$, $\hat{Y}$ e $\hat{P}_z$}.
+
+A função de onda associada a $\ket{x_0y_0p_z}$ é
+\begin{equation}
+    \braket{\vec{r}}{x_0y_0p_z} = \delta(x-x_0)\delta(y-y_0)\frac{e^{ip_zz/\hbar}}{\sqrt{2\pi\hbar}}
+\label{eq:aula22_funcao_onda_xypz}
+\end{equation}
+e você pode verificar a ortonormalização
+\begin{equation}
+    \braket{x_0'y_0'p_z'}{x_0y_0p_z} = \delta(x_0-x_0')\delta(y_0-y_0')\delta(p_z-p_z')
+\label{eq:aula22_ortonormalizacao_xypz}
+\end{equation}
+
+Veja como verificar isso:
+\begin{align}
+    \braket{x_0'y_0'p_z'}{x_0y_0p_z} &= \int d\vec{r} \; \delta(x_0'-x)\delta(y_0'-y)\frac{e^{-ip_z'z/\hbar}}{\sqrt{2\pi\hbar}} \, \delta(x_0-x)\delta(y_0-y)\frac{e^{ip_zz/\hbar}}{\sqrt{2\pi\hbar}} \notag \\
+    &= \left[\int_{-\infty}^{\infty}dx \; \delta(x_0'-x)\delta(x_0-x)\right]\left[\int_{-\infty}^{\infty}dy \; \delta(y_0'-y)\delta(y_0-y)\right]\left[\int_{-\infty}^{\infty}dz \; \frac{e^{i(p_z-p_z')z/\hbar}}{2\pi\hbar}\right] \notag \\
+    &= \delta(x_0'-x_0)\delta(y_0'-y_0)\delta(p_z-p_z')
+\label{eq:aula22_verificacao_xypz}
+\end{align}
+
+\subsection*{Projetores Associados a Medidas}
+
+As diversas expressões da identidade permitem construir projetores apropriados aos diversos medidos que podem ser feitos em uma partícula.
+
+\textbf{Exemplo:} Projetor associado à probabilidade de medir a posição da partícula e encontrá-la entre $x=a$ e $x=b$ (com quaisquer $y$ e $z$):
+\begin{equation}
+    \hat{P} = \int_a^b dx \int_{-\infty}^{\infty}dy\int_{-\infty}^{\infty}dz \; \ket{xyz}\bra{xyz}
+\label{eq:aula22_projetor_posicao}
+\end{equation}
+\underline{autovalores associados ao resultado proposto}.
+
+\textbf{Exemplo:} Projetor associado à probabilidade de, medindo $|\vec{p}|$, encontrar um resultado inferior a $|\vec{p}| = p_0$:
+\begin{equation}
+    \hat{P} = \int dp_x \int dp_y \int dp_z \; \ket{\vec{p}}\bra{\vec{p}}
+\label{eq:aula22_projetor_momento}
+\end{equation}
+\underline{soma restrita a: $p_x^2 + p_y^2 + p_z^2 \le p_0^2$}.
+
+Construir o projetor associado a um resultado de medida é a chave para encontrar a probabilidade do resultado, $\bra{\Psi}\hat{P}\ket{\Psi}$, e o estado da partícula após o resultado ser obtido, $\hat{P}\ket{\Psi}$.
+
+\fbox{\parbox{0.92\textwidth}{
+supondo $\braket{\Psi}{\Psi} = 1$
+}}
+
+\subsection*{O Operador $\hat{R}$}
+
+Para responder a respeito de medidas de $\hat{L}^2$ e $\hat{L}_z$ temos que começar escrevendo a identidade usando os autoestados $\ket{\ell m}$. O problema é que esses estados não são bem definidos.
+\begin{equation}
+    \braket{\vec{r}}{\ell m} = R(r) Y_{\ell m}(\theta,\varphi) \qquad \text{(\underline{qualquer})}
+\label{eq:aula22_problema_lm}
+\end{equation}
+
+Precisamos introduzir um outro operador, que comute com $\hat{L}^2$ e $\hat{L}_z$, de tal modo que a informação do autovalor desse operador, junto com $(\ell, m)$, permita escrever uma função de onda bem definida.
+
+\textbf{O OPERADOR $\hat{R}$}
+
+\begin{equation}
+    \hat{R}^2 = \hat{X}^2 + \hat{Y}^2 + \hat{Z}^2
+\label{eq:aula22_R2_def}
+\end{equation}
+corresponde à distância da partícula à origem (ao quadrado).
+
+$\hat{R}^2$ comuta com $\hat{L}_x$, $\hat{L}_y$ e $\hat{L}_z$.
+\begin{align}
+    \left[\hat{X}^2+\hat{Y}^2+\hat{Z}^2, \; \underbrace{\hat{X}\hat{P}_y - \hat{Y}\hat{P}_x}_{\hat{L}_z}\right]
+    &= -\hat{Y}\left[\hat{X}^2,\hat{P}_x\right] + \hat{X}\left[\hat{Y}^2,\hat{P}_y\right] \notag \\
+    &= -\hat{Y}(2i\hbar\hat{X}) + \hat{X}(2i\hbar\hat{Y}) \notag \\
+    &= 0
+\label{eq:aula22_R2_Lz_comutador}
+\end{align}
+e similarmente com $\hat{L}_x$ e $\hat{L}_y$. Consequentemente temos $[\hat{R}^2,\hat{L}^2] = [\hat{R}^2,\hat{L}_z] = 0$.
+
+O operador que vamos usar é, na verdade, $\hat{R} = \sqrt{\hat{X}^2+\hat{Y}^2+\hat{Z}^2}$, que comuta com $\hat{L}^2$ e $\hat{L}_z$ por ser uma função do operador $\hat{R}^2$.
+
+\subsection*{Autovalores/Autofunções de $\hat{R}$}
+
+\begin{equation}
+    \hat{R}\ket{r_0} = r_0\ket{r_0}
+\label{eq:aula22_R_autovalor}
+\end{equation}
+
+Tomando produto interno com $\bra{\vec{r}}$:
+\begin{equation}
+    \bra{\vec{r}}\hat{R}\ket{r_0} = r_0\braket{\vec{r}}{r_0}
+\label{eq:aula22_R_produto_interno}
+\end{equation}
+\begin{equation}
+    \sqrt{x^2+y^2+z^2}\,\braket{\vec{r}}{r_0} = r_0\braket{\vec{r}}{r_0} \qquad (*)
+\label{eq:aula22_R_equacao_estrela}
+\end{equation}
+\underline{pois $\ket{\vec{r}}$ é autovetor de $\hat{R}$}.
+
+Dessa igualdade somos forçados a concluir que $r_0 \ge 0$ (autovalores são positivos e formam um espectro contínuo).
+
+$\braket{\vec{r}}{r_0}$ é uma função de $x,y,z$, com $r_0$ como parâmetro. A única função que torna $(*)$ possível é
+\begin{equation}
+    \braket{\vec{r}}{r_0} = \delta(r-r_0)\,f(\theta,\varphi) \qquad \text{(\underline{qualquer})}
+\label{eq:aula22_R_autofuncao}
+\end{equation}
+
+A parte angular de $\braket{\vec{r}}{r_0}$ é arbitrária. Modificamos a parte radial para
+\begin{equation}
+    \braket{\vec{r}}{r_0} = \frac{\delta(r-r_0)}{r_0}f(\theta,\varphi)
+\label{eq:aula22_R_autofuncao_modificada}
+\end{equation}
+para que a normalização de delta de Dirac saia diretamente da parte radial.
+\begin{align}
+    \braket{r_0}{r_0'} &= \int d\vec{r}\,\braket{r_0}{\vec{r}}\braket{\vec{r}}{r_0'} \notag \\
+    &= \int_0^\infty r^2\,dr \int d\Omega \; \frac{\delta(r-r_0)}{r_0}f^*(\theta,\varphi)\,\frac{\delta(r-r_0')}{r_0'}g(\theta,\varphi) \notag \\
+    &= \left[\int_0^\infty dr \; \frac{r^2}{r_0 r_0'}\delta(r-r_0)\delta(r-r_0')\right]\left[\int d\Omega \; f^*(\Omega)g(\Omega)\right] \notag \\
+    &= \delta(r_0-r_0')\left[\int d\Omega \; f^*(\Omega)g(\Omega)\right]
+\label{eq:aula22_R_normalizacao}
+\end{align}
+
+Dessa forma o estado $\ket{r_0\ell m}$ é completamente bem definido:
+\begin{equation}
+    \braket{\vec{r}}{r_0\ell m} = \frac{\delta(r-r_0)}{r_0}Y_{\ell m}(\theta,\varphi)
+\label{eq:aula22_r0lm_funcao_onda}
+\end{equation}
+e a normalização é:
+\begin{equation}
+    \braket{r_0'\ell'm'}{r_0\ell m} = \delta(r_0-r_0')\,\delta_{\ell\ell'}\,\delta_{mm'}
+\label{eq:aula22_r0lm_normalizacao}
+\end{equation}
+onde usei
+\begin{equation}
+    \int d\Omega \; Y_{\ell'm'}^*(\Omega)\,Y_{\ell m}(\Omega) = \delta_{\ell\ell'}\,\delta_{mm'}
+\label{eq:aula22_ortogonalidade_Ylm}
+\end{equation}
+
+Somando sobre todos os autovalores de $\hat{R}$, $\hat{L}^2$ e $\hat{L}_z$ obtemos uma expressão do operador identidade
+\begin{equation}
+    \hat{I} = \int_0^\infty dr_0 \underbrace{\sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell}}_{\text{não são independentes!}} \ket{r_0\ell m}\bra{r_0\ell m}
+\label{eq:aula22_identidade_r0lm}
+\end{equation}
+
+\subsection*{Projetores}
+
+\begin{itemize}
+    \item Projetor associado à medida de $\hat{L}^2$ com resultado $6\hbar^2$ ($\ell=2$):
+    \begin{equation}
+        \hat{P} = \int_0^\infty dr_0 \sum_{m=-2}^{2} \ket{r_0 2 m}\bra{r_0 2 m}
+    \label{eq:aula22_projetor_L2}
+    \end{equation}
+
+    \item Projetor associado à medida de $L_z$ com resultado $3\hbar$ ($m=3$):
+    \begin{equation}
+        \hat{P} = \int_0^\infty dr_0 \sum_{\ell=3}^{\infty} \ket{r_0\,\ell\,3}\bra{r_0\,\ell\,3}
+    \label{eq:aula22_projetor_Lz}
+    \end{equation}
+
+    \item Projetor associado à medida de $R$ (distância da partícula à origem) com resultado $R < a$:
+    \begin{equation}
+        \hat{P} = \int_0^a dr_0 \sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell} \ket{r_0\ell m}\bra{r_0\ell m}
+    \label{eq:aula22_projetor_R}
+    \end{equation}
+\end{itemize}
+
+\fbox{\parbox{0.92\textwidth}{
+$\to$ selecione da identidade os autovalores correspondentes ao resultado da medida!
+}}
+
+\subsection*{Cálculo de $\braket{r_0\ell m}{\Psi}$}
+
+Como as probabilidades saem de $\bra{\Psi}\hat{P}\ket{\Psi}$ (supondo que $\braket{\Psi}{\Psi}=1$) é fundamental saber calcular
+\begin{equation}
+    \braket{r_0\ell m}{\Psi}
+\label{eq:aula22_braket_r0lm_psi}
+\end{equation}
+
+Isso é particularmente simples quando a função de onda $\braket{\vec{r}}{\Psi}$ é fornecida em coordenadas esféricas.
+
+\textbf{Exemplo:} $\braket{\vec{r}}{\Psi} = e^{-\alpha r}\cos^2\theta$ (\underline{não está normalizada}), calcule $\braket{r_0\ell m}{\Psi}$.
+\begin{align}
+    \braket{r_0\ell m}{\Psi} &= \int_0^\infty r^2 dr \int d\Omega \; \frac{\delta(r-r_0)}{r_0}Y_{\ell m}^*(\Omega)\,e^{-\alpha r}\cos^2\theta \notag \\
+    &= r_0\,e^{-\alpha r_0}\int d\Omega \; Y_{\ell m}^*(\theta,\varphi)\cos^2\theta
+\label{eq:aula22_exemplo_braket_r0lm}
+\end{align}
+
+Integrais angulares como essa são facilmente calculadas quando a parte angular de $\braket{\vec{r}}{\Psi}$ é dada em termos de harmônicos esféricos (nesse caso basta usar $\int d\Omega \, Y_{\ell'm'}^*(\Omega)Y_{\ell m}(\Omega) = \delta_{\ell\ell'}\delta_{mm'}$).
+
+Uma função regular de $(\theta,\varphi)$ \underline{sempre} pode ser escrita como combinação linear de harmônicos esféricos:
+\begin{equation}
+    f(\theta,\varphi) = \sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell} c_{\ell m}\,Y_{\ell m}(\theta,\varphi) \qquad (*)
+\label{eq:aula22_expansao_harmonicos}
+\end{equation}
+com
+\begin{equation}
+    c_{\ell m} = \iint f(\theta,\varphi)\,Y_{\ell m}^*(\theta,\varphi)\,\sin\theta \, d\theta \, d\varphi
+\label{eq:aula22_coef_clm}
+\end{equation}
+
+\subsection*{Completeza dos Harmônicos Esféricos}
+
+A completeza dos harmônicos esféricos se expressa matematicamente como (coloque a expressão de $c_{\ell m}$ em $(*)$):
+\begin{align}
+    \sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell} Y_{\ell m}^*(\theta,\varphi)\,Y_{\ell m}(\theta',\varphi') &= \frac{\delta(\theta-\theta')\,\delta(\varphi-\varphi')}{\sin\theta} \notag \\
+    &= \delta(\cos\theta-\cos\theta')\,\delta(\varphi-\varphi')
+\label{eq:aula22_completeza_harmonicos}
+\end{align}
+
+A normalização de $f(\theta,\varphi)$ se manifesta nos coeficientes como (derive isso):
+\begin{equation}
+    \iint |f(\theta,\varphi)|^2 \sin\theta \, d\theta \, d\varphi = \sum_{\ell,m} |c_{\ell m}|^2
+\label{eq:aula22_normalizacao_coef}
+\end{equation}
+
+\subsection*{Dicas Práticas para Encontrar os $c_{\ell m}$ de uma $f(\theta,\varphi)$}
+
+\begin{enumerate}
+    \item[i)] Escreva a dependência em $\varphi$ na forma $e^{im\varphi}$ para saber os $m$'s que produzem $c_{\ell m} \ne 0$.
+    \begin{equation}
+        \sin\theta\cos2\varphi = \sin\theta\left(\frac{e^{i2\varphi}+e^{-i2\varphi}}{2}\right)
+    \label{eq:aula22_dica1_exemplo}
+    \end{equation}
+    $\Rightarrow$ apenas $c_{2,2}$ e $c_{2,\bar{2}}$ (isto é, $c_{2,-2}$) são não nulos.
+
+    \item[ii)] Observe a paridade da função de $\theta$ em relação a $\cos\theta \to -\cos\theta$ (use $x=\cos\theta$):
+    \begin{align}
+        \sin\theta\cos2\varphi &= \sqrt{1-x^2}\cos2\varphi \quad \to \text{PAR} \label{eq:aula22_dica2_par} \\
+        \sin\theta\cos\theta\,e^{i3\varphi} &= x\sqrt{1-x^2}\,e^{i3\varphi} \quad \to \text{ÍMPAR} \label{eq:aula22_dica2_impar}
+    \end{align}
+
+    Como a paridade dos harmônicos esféricos em relação a $\cos\theta \to -\cos\theta$ é determinada por $\ell+|m|$ (ver exercício I da lista), temos:
+    \begin{align}
+        \sin\theta\cos2\varphi &\to m=\pm2,\;\ell=2,4,6,\dots \quad (\ell+|m| \text{ PAR}) \label{eq:aula22_dica2_caso1} \\
+        \sin\theta\cos\theta\,e^{i3\varphi} &\to m=3,\;\ell=4,6,8,\dots \quad (\ell+|m| \text{ ÍMPAR}) \label{eq:aula22_dica2_caso2}
+    \end{align}
+
+    \item[iii)] Comece pelos menores $\ell$'s e vá registrando os $c_{\ell m}$ diferentes de zero. Pare quando $\displaystyle\sum_{\ell,m}|c_{\ell m}|^2$ for igual a $\displaystyle\iint |f(\theta,\varphi)|^2 \, d\Omega$.
+\end{enumerate}
+
+\subsection*{Exemplo Completo: Previsão de Medidas de $\hat{L}^2$ e $\hat{L}_z$}
+
+Quando a parte angular de $\braket{\vec{r}}{\Psi}$ está expressa em termos de $Y_{\ell m}$'s fica fácil de prever os possíveis resultados de medidas de $\hat{L}^2$ e $\hat{L}_z$.
+
+\textbf{Exemplo:}
+\begin{equation}
+    \Psi(\vec{r}) = R(r)\,Y_{22}(\theta,\varphi) + G(r)\left[\sqrt{2}\,Y_{10}(\theta,\varphi) + Y_{1\bar{1}}(\theta,\varphi)\right]
+\label{eq:aula22_exemplo_completo_psi}
+\end{equation}
+
+$R(r)$ e $G(r)$ são funções radiais das quais precisamos conhecer as integrais
+\begin{equation}
+    \int_0^\infty |R(r)|^2 r^2 \, dr = A \qquad \text{e} \qquad \int_0^\infty |G(r)|^2 r^2 \, dr = B
+\label{eq:aula22_integrais_radiais}
+\end{equation}
+
+Normalizamos $\Psi(\vec{r})$ calculando (mostre isso)
+\begin{equation}
+    \int d\vec{r} \; |\Psi(\vec{r})|^2 = A + 3B
+\label{eq:aula22_normalizacao_psi}
+\end{equation}
+\begin{equation}
+    \Psi(\vec{r}) = (A+3B)^{-1/2}\left[R(r)\,Y_{22} + \sqrt{2}\,G\,Y_{10} + G\,Y_{1\bar{1}}\right] \quad \text{(normalizada)}
+\label{eq:aula22_psi_normalizada}
+\end{equation}
+
+Os valores de $\hat{L}^2$ e $\hat{L}_z$ possíveis de serem obtidos são
+\begin{equation}
+    L^2 = \{2\hbar^2 \text{ e } 6\hbar^2\} \qquad L_z = \{-\hbar, 0, 2\hbar\}
+\label{eq:aula22_valores_possiveis}
+\end{equation}
+
+\textbf{Probabilidade de encontrar $\ell=2$:}
+\begin{equation}
+    \hat{P} = \int_0^\infty dr_0 \sum_{m=-2}^{2} \ket{r_0\,2\,m}\bra{r_0\,2\,m}
+\label{eq:aula22_projetor_l2_exemplo}
+\end{equation}
+
+\begin{equation}
+    \braket{r_0\,2\,m}{\Psi} = \int_0^\infty r^2 dr \int d\Omega \; \frac{\delta(r-r_0)}{r_0}Y_{2m}^*(\Omega)\,\frac{R(r)\,Y_{22}+\sqrt{2}\,G\,Y_{10}+G\,Y_{1\bar{1}}}{\sqrt{A+3B}}
+    = \frac{r_0\,R(r_0)\,\delta_{m2}}{\sqrt{A+3B}}
+\label{eq:aula22_braket_r02m}
+\end{equation}
+(da ortogonalidade dos $Y_{\ell m}$).
+
+Segue que
+\begin{equation}
+    \bra{\Psi}\hat{P}\ket{\Psi} = \int_0^\infty dr_0 \; \frac{r_0^2\,|R(r_0)|^2}{A+3B} = \boxed{\frac{A}{A+3B}}
+\label{eq:aula22_probabilidade_l2}
+\end{equation}
+
+\textbf{A função de onda após medir $\hat{L}^2$ e obter $6\hbar^2$ ($\ell=2$):}
+\begin{align}
+    \braket{\vec{r}}{\hat{P}}{\Psi} &= \int_0^\infty dr_0 \sum_{m=-2}^{2} \braket{\vec{r}}{r_0\,2\,m}\,\frac{r_0\,R(r_0)\,\delta_{m2}}{\sqrt{A+3B}} \notag \\
+    &= \int_0^\infty dr_0 \; \delta(r-r_0)\,Y_{22}(\theta,\varphi)\,\frac{r_0\,R(r_0)}{\sqrt{A+3B}} \notag \\
+    &= \frac{R(r)\,Y_{22}(\theta,\varphi)}{\sqrt{A+3B}} \qquad \text{(não normalizada)} \notag \\
+    &= \frac{R(r)\,Y_{22}(\theta,\varphi)}{\sqrt{A}} \qquad \text{(normalizada)}
+\label{eq:aula22_funcao_onda_pos_medida}
+\end{align}

@@ -1,0 +1,429 @@
+\section*{(6\textordfeminine\ aula) --- Funções de Operadores e Espaços Vetoriais de Dimensão Infinita (seções 1.9, 1.10)}
+
+\subsection*{Funções de Operadores}
+
+Vimos 2 objetos que podem atuar em vetores e transformá-los em outros vetores: números e operadores.
+\begin{equation}
+    \alpha \ket{V} = \ket{W} \qquad \text{($\alpha$ é um número complexo)}
+\end{equation}
+\begin{equation}
+    \hat{L}\ket{V} = \ket{Z} \qquad \text{($\hat{L}$ é um operador)}
+\end{equation}
+
+A soma de vetores e o produto interno não "atuam" em vetores, eles "associam" um par de vetores produzindo um outro vetor, no primeiro caso, ou um número, no segundo caso.
+\begin{equation}
+    \underbrace{\ket{Z}}_{\text{vetor}} = \ket{V} + \ket{W} \qquad\qquad \underbrace{\alpha}_{\text{número}} = \braket{V}{W}
+\end{equation}
+
+Queremos aqui definir uma \textbf{FUNÇÃO DE UM OPERADOR}:
+\begin{equation}
+    f(\hat{L})\ket{V} = \ket{W}
+\end{equation}
+Por exemplo, $f(x) = e^x$ ou $f(x) = \cos x$ resultariam em
+\begin{equation}
+    e^{\hat{L}}\ket{V} \qquad \text{ou} \qquad \cos\hat{L}\ket{V} \, .
+\end{equation}
+
+Como interpretar esses operadores? Pela representação em série das funções!
+
+Se $f(x) = \displaystyle\sum_{n=0}^{\infty} a_n x^n$, então
+\begin{equation}
+    f(\hat{L}) \equiv \sum_{n=0}^{\infty} a_n \hat{L}^n \, .
+\end{equation}
+
+A introdução da série é necessária pois sabemos o significado do \textbf{PRODUTO DE OPERADORES}. Por exemplo,
+\begin{equation}
+    \hat{L}^2 \ket{V} = \hat{L}\left[\hat{L}\ket{V}\right]
+\end{equation}
+onde o termo entre colchetes é o vetor resultante da ação de $\hat{L}$ em $\ket{V}$.
+
+No entanto, a representação em série de algumas funções é restrita a um domínio específico. Por exemplo,
+\begin{equation}
+    e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!} \qquad \text{para qualquer valor de } x \, ,
+\end{equation}
+\begin{equation}
+    \frac{1}{1-x} = \sum_{n=0}^{\infty} x^n \qquad \text{apenas para } |x| < 1 \, .
+\end{equation}
+
+No caso de funções de operadores \textbf{HERMITIANOS} (o único exemplo que encontraremos), a função do operador só pode ser identificada com a série se TODOS os autovalores de $\hat{L}$ estiverem dentro do domínio de validade da série.
+
+Por que? Porque, em uma base de \textbf{AUTOVETORES} de $\hat{L}$ (base ortonormal, pois o operador é Hermitiano por hipótese),
+\begin{equation}
+    \hat{L} \leftrightarrow
+    \begin{bmatrix}
+        \omega_1 & & 0 \\
+        & \omega_2 & \\
+        0 & & \ddots \\
+        & & & \omega_n
+    \end{bmatrix}
+\end{equation}
+
+portanto (multiplique a matriz $m$ vezes)
+\begin{equation}
+    \hat{L}^m \leftrightarrow
+    \begin{bmatrix}
+        \omega_1^m & & 0 \\
+        & \omega_2^m & \\
+        0 & & \ddots \\
+        & & & \omega_n^m
+    \end{bmatrix}
+\end{equation}
+
+então
+\begin{equation}
+    \label{eq:aula6_serie_operador}
+    f(\hat{L}) \equiv \sum_{m=0}^{\infty} a_m \hat{L}^m \, , \quad \text{nessa base de autovetores de } \hat{L} \, ,
+\end{equation}
+fica
+\begin{equation}
+    f(\hat{L}) \leftrightarrow
+    \begin{bmatrix}
+        \displaystyle\sum_m a_m \omega_1^m & & \\
+        & \displaystyle\sum_m a_m \omega_2^m & \\
+        & & \ddots \\
+        & & & \displaystyle\sum_m a_m \omega_n^m
+    \end{bmatrix}
+\end{equation}
+
+Se todos os autovalores estão dentro do domínio de validade da representação em série,
+\begin{equation}
+    f(\hat{L}) \leftrightarrow
+    \begin{bmatrix}
+        f(\omega_1) & & 0 \\
+        & f(\omega_2) & \\
+        0 & & \ddots \\
+        & & & f(\omega_n)
+    \end{bmatrix}
+\end{equation}
+e a identificação $f(\hat{L}) = \displaystyle\sum_m a_m \hat{L}^m$ pode ser feita.
+
+Em particular,
+\begin{equation}
+    \hat{L}\ket{\omega_1} = \omega_1 \ket{\omega_1} \qquad\qquad \underbrace{f(\hat{L})}_{\text{operador}} \ket{\omega_1} = \underbrace{f(\omega_1)}_{\text{número, autovalor}} \ket{\omega_1}
+\end{equation}
+
+Na prática só encontraremos operadores do tipo $e^{\hat{L}}$, e a representação em série de $e^x$ é válida para qualquer valor de $x$.
+
+\subsection*{Derivadas de Operadores}
+
+Iremos encontrar operadores na forma $e^{\hat{L}t}$, onde $\hat{L}$ é um operador e $t$ é um parâmetro (um número). Você tem um operador diferente para cada valor do parâmetro $t$.
+
+Podemos definir $\hat{U}(t) = e^{\hat{L}t}$ e tentar avaliar $\dfrac{d\hat{U}}{dt}$.
+
+Da representação em série,
+\begin{equation}
+    \frac{d}{dt} e^{\hat{L}t} = \frac{d}{dt}\left[\sum_{m=0}^{\infty} \frac{\hat{L}^m t^m}{m!}\right]
+\end{equation}
+\begin{equation}
+    = \sum_{m=1}^{\infty} \frac{\hat{L}^m t^{m-1}}{(m-1)!}
+\end{equation}
+\begin{equation}
+    = \hat{L}\left(\sum_{m=0}^{\infty} \frac{\hat{L}^m t^m}{m!}\right) = \hat{L}\, e^{\hat{L}t}
+\end{equation}
+
+ou, isolando o $\hat{L}$ à direita,
+\begin{equation}
+    \label{eq:aula6_derivada_U}
+    \frac{d\hat{U}}{dt} = \hat{L}\, e^{\hat{L}t} = e^{\hat{L}t}\, \hat{L} \, .
+\end{equation}
+
+Vemos que a derivada atua na função como se $\hat{L}$ fosse uma constante.
+
+\textbf{Exemplo:}
+\begin{align}
+    \frac{d}{dt}\cos(\hat{L}t) &= -\hat{L}\sin(\hat{L}t) \\
+    &= -\sin(\hat{L}t)\,\hat{L}
+\end{align}
+
+A ordem aqui não importa pois $\hat{L} f(\hat{L}) = f(\hat{L})\hat{L}$ (imagine a série de $f(\hat{L})$ e se convença).
+
+\textbf{Exemplo:} Seja um sistema de 2 EDOs
+\begin{equation}
+    \frac{d}{dt}
+    \begin{bmatrix}
+        x_1(t) \\ x_2(t)
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        L_{11} & L_{12} \\
+        L_{21} & L_{22}
+    \end{bmatrix}
+    \begin{bmatrix}
+        x_1(t) \\ x_2(t)
+    \end{bmatrix}
+    \qquad \text{(4 números conhecidos)}
+\end{equation}
+
+Podemos pensar nessa equação como a equação para as componentes de um vetor abstrato (como na aula passada) em uma base ortonormal $\{\ket{1}, \ket{2}\}$:
+\begin{equation}
+    \ket{x(t)} = x_1(t)\ket{1} + x_2(t)\ket{2}
+\end{equation}
+e $L_{11} = \bra{1}\hat{L}\ket{1}$, etc. Assim temos (abstratamente)
+\begin{equation}
+    \label{eq:aula6_eq_evolucao}
+    \frac{d}{dt}\ket{x(t)} = \hat{L}\ket{x(t)} \tag{$*$}
+\end{equation}
+
+definimos o \textbf{OPERADOR DE EVOLUÇÃO}
+\begin{equation}
+    \ket{x(t)} \equiv \hat{U}(t)\underbrace{\ket{x(0)}}_{\text{vetor inicial}}
+\end{equation}
+onde o vetor à esquerda é o vetor em um tempo $t$ posterior.
+
+Podemos obter uma \textbf{EQUAÇÃO DIFERENCIAL} para o operador $\hat{U}(t)$ levando isso na equação $(*)$:
+\begin{equation}
+    \frac{d}{dt}\left[\hat{U}(t)\ket{x(0)}\right] = \hat{L}\left[\hat{U}(t)\ket{x(0)}\right]
+\end{equation}
+
+como isso deve ser verdade para qualquer vetor inicial:
+\begin{equation}
+    \frac{d\hat{U}}{dt} = \hat{L}\,\hat{U}(t) \, .
+\end{equation}
+
+Como qualquer equação diferencial, isso é uma pergunta: "Que operador, que tem o tempo como parâmetro, quando diferenciado produz $\hat{L}\hat{U}(t)$?"
+
+A \textbf{CONDIÇÃO INICIAL} para o operador é $\hat{U}(0) = \hat{I}$, isso vem da própria definição do operador de evolução: $\ket{x(t)} = \hat{U}(t)\ket{x(0)}$.
+
+A resposta é
+\begin{equation}
+    \boxed{\hat{U}(t) = e^{\hat{L}t}}
+\end{equation}
+
+(verifique que $\hat{U}(t)$ satisfaz a equação diferencial e a condição inicial)
+
+Formalmente escrevemos $\ket{x(t)} = e^{\hat{L}t}\ket{x(0)}$. Veremos exemplos como esse no decorrer do curso.
+
+\subsection*{Produto de Funções de Operadores Diferentes}
+
+Da representação em série de $f(\hat{L})$ e $g(\hat{\Lambda})$ você pode se convencer que $f(\hat{L})g(\hat{\Lambda}) = g(\hat{\Lambda})f(\hat{L})$ \textbf{APENAS SE} $\hat{L}$ e $\hat{\Lambda}$ \textbf{COMUTAM}. Em particular,
+\begin{equation}
+    e^{\hat{\Lambda}} e^{\hat{L}} \neq e^{\hat{L}} e^{\hat{\Lambda}} \quad \text{com } [\hat{L}, \hat{\Lambda}] \neq 0
+\end{equation}
+\begin{equation}
+    e^{\hat{\Lambda}} e^{\hat{L}} \neq e^{(\hat{\Lambda}+\hat{L})} \quad \text{com } [\hat{L}, \hat{\Lambda}] \neq 0
+\end{equation}
+(compare as séries e se convença)
+
+No entanto,
+\begin{equation}
+    \label{eq:aula6_exp_comutam}
+    e^{\hat{\Lambda}} e^{\hat{L}} = e^{\hat{L}} e^{\hat{\Lambda}} = e^{(\hat{L}+\hat{\Lambda})} \quad \text{com } [\hat{L}, \hat{\Lambda}] = 0
+\end{equation}
+(mostre isso!)
+
+\fbox{\parbox{0.92\textwidth}{
+\textbf{EM RESUMO}, $f(\hat{L})$ é um símbolo para a soma $\displaystyle\sum_{m=0}^{\infty} a_m \hat{L}^m$.
+}}
+
+\subsection*{Espaços Vetoriais de Dimensão Infinita}
+
+Na MQ o espaço vetorial dos estados físicos tem dimensão infinita.
+
+Como exemplo desse tipo de espaço vetorial, considere o conjunto das funções da variável $x$ no intervalo $[a,b]$ tais que $f(a) = f(b) = 0$. Definimos a soma e a multiplicação por escalar (real):
+\begin{equation}
+    g(x) = f(x) + h(x)
+\end{equation}
+\begin{equation}
+    h(x) = \alpha f(x)
+\end{equation}
+(verifique que o conjunto de funções proposto é fechado em relação a esta soma e esta multiplicação por escalar)
+
+O que seria uma base nesse espaço vetorial?
+
+Como definir um produto interno?
+
+Uma função é uma lista dos valores de $f$ para um contínuo de valores de $x$. Uma representação aproximada seria uma lista dos valores de $f$ em um conjunto discreto de valores de $x$, por exemplo
+\begin{equation}
+    x_i = a + \frac{i}{N+1}(b-a) \qquad (i = 1, 2, \dots, N)
+\end{equation}
+
+Assim como identificamos $\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}$ com as componentes de um vetor $\ket{x}$ em uma base $\{\ket{1}, \ket{2}\}$ de um espaço vetorial de dimensão 2, podemos identificar o conjunto de $N$ valores $[f(x_1), f(x_2), \dots, f(x_N)]$ com as componentes de um vetor abstrato $\ket{f_N}$, que representa a função, em uma base $\{\ket{x_1}, \ket{x_2}, \dots, \ket{x_N}\}$. O espaço vetorial teria dimensão $N$, portanto. Usaríamos:
+\begin{equation}
+    \ket{f_N} = \sum_{i=1}^N \underbrace{f(x_i)}_{\text{componentes do vetor (números)}} \underbrace{\ket{x_i}}_{\text{base}}
+\end{equation}
+\begin{equation}
+    \braket{x_i}{x_j} = \delta_{ij} \qquad \text{(ortonormalidade da base)}
+\end{equation}
+\begin{equation}
+    \sum_{i=1}^N \ket{x_i}\bra{x_i} = \hat{I} \qquad \text{(operador identidade)}
+\end{equation}
+
+Qualquer função no intervalo $[a,b]$ seria representada por um vetor abstrato nesse espaço vetorial de dimensão $N$ a partir do conhecimento dos $N$ valores $f(x_i)$.
+
+Vamos supor que as funções são reais e o espaço vetorial é real (só podemos multiplicar funções por números reais).
+
+Temos um espaço vetorial real de dimensão \textbf{FINITA} e igual a $N$. Ele não é em nada diferente dos exemplos que já vimos.
+
+Por exemplo, o produto interno seria
+\begin{equation}
+    \braket{g_N}{f_N} = \sum_{i=1}^N g(x_i) f(x_i) \tag{$*$}
+\end{equation}
+
+a soma de dois vetores poderia ser escrita como
+\begin{equation}
+    \ket{f_N} + \ket{g_N} = \sum_{i=1}^N \left(f(x_i) + g(x_i)\right)\ket{x_i}
+\end{equation}
+
+a norma seria:
+\begin{equation}
+    \sqrt{\braket{f_N}{f_N}} = \sqrt{\sum_{i=1}^N f(x_i)f(x_i)}
+\end{equation}
+
+O problema aqui é que $N$ valores não especificam univocamente uma função. Poderíamos melhorar se fizéssemos $N \to \infty$.
+
+Para que o produto interno $(*)$ seja um número finito, temos que redefini-lo, nesse limite, como
+\begin{equation}
+    \braket{f}{g} = \lim_{N \to \infty} \sum_{i=1}^N f(x_i) g(x_i)\, \Delta
+\end{equation}
+
+$\Delta = \dfrac{(b-a)}{N+1}$ é o espaçamento $x_{i+1} - x_i$. Claramente isso é
+\begin{equation}
+    \boxed{\braket{f}{g} = \int_a^b f(x) g(x)\, dx}
+\end{equation}
+
+No caso da MQ teremos funções \textbf{COMPLEXAS} de $x$ e o produto interno será definido como
+\begin{equation}
+    \braket{f}{g} = \int_a^b f^*(x) g(x)\, dx = \braket{g}{f}^*
+\end{equation}
+para o espaço vetorial complexo de funções complexas no intervalo $x \in [a,b]$, tais que $f(a) = f(b) = 0$.
+
+Como fica a base anterior $\ket{x_i}$? Temos agora um \textbf{CONTÍNUO} de vetores base.
+\begin{equation}
+    \{\ket{x_1}, \dots, \ket{x_N}\} \longrightarrow \{\ket{x}\, ; \, x \in [a,b]\}
+\end{equation}
+\begin{center}
+    $N$ vetores base \hspace{3cm} infinitos vetores base
+\end{center}
+
+A ortogonalidade dos vetores base é definida como:
+\begin{equation}
+    \braket{x_i}{x_j} = \delta_{ij} \longrightarrow \braket{x}{x'} = \delta(x - x')
+\end{equation}
+onde $\delta(x-x')$ é a função dita de Dirac. Ela é nula se $x \neq x'$ (ortogonalidade dos vetores da base), mas é infinita se $x = x'$ (isso implica que os vetores base $\ket{x}$ não têm norma unitária).
+
+A identidade fica (como consequência dessa normalização da base)
+\begin{equation}
+    \sum_{i=1}^N \ket{x_i}\bra{x_i} = \hat{I} \longrightarrow \int_a^b \ket{x}\bra{x}\, dx = \hat{I} \, .
+\end{equation}
+
+\subsection*{Propriedades de $\delta(x-x')$}
+
+A função $\delta(x-x')$ tem área unitária:
+\begin{equation}
+    \int_{x-\varepsilon}^{x+\varepsilon} \delta(x-x')\, dx' = 1 \tag{$*$}
+\end{equation}
+e é simétrica com relação ao seu argumento
+\begin{equation}
+    \delta(x-x') = \delta(x'-x) \, .
+\end{equation}
+
+Essa função aparece sempre dentro de uma integral e sua ação é
+\begin{equation}
+    \int_a^b \delta(x-x') f(x')\, dx' = f(x)
+\end{equation}
+
+Isso na verdade é uma consequência de $(*)$. Em geral, quando temos a integral de uma função muito concentrada vezes uma $f(x)$ suave, obtemos:
+\begin{equation}
+    \int_a^b \delta(x-x') f(x')\, dx' \simeq f(x) \int_a^b \delta(x-x')\, dx' = f(x)
+\end{equation}
+("$\simeq$" pois a área da função concentrada é unitária)
+
+apenas para a função de Dirac o "$\simeq$" vira uma igualdade.
+
+Sempre que encontrarmos uma base \textbf{CONTÍNUA} (como $\ket{x}$) vamos definir sua ortonormalidade com a função delta de Dirac. A expressão da identidade como uma integral de $\ket{x}\bra{x}$ é consequência dessa normalização, pois
+\begin{equation}
+    \underbrace{\braket{x_1}{x_2}}_{\text{(por hipótese)}} = \delta(x_1 - x_2) = \underbrace{\int_a^b \delta(x_1-x)\,\delta(x_2-x)\, dx}_{\text{(propriedade da função delta)}}
+\end{equation}
+\begin{equation}
+    = \underbrace{\int_a^b \braket{x_1}{x}\braket{x}{x_2}\, dx}_{\text{(por hipótese)}} = \bra{x_1}\hat{I}\ket{x_2}
+\end{equation}
+\begin{equation}
+    \Longrightarrow \hat{I} = \int_a^b dx\, \ket{x}\bra{x}
+\end{equation}
+
+(É possível também mostrar que $\hat{I} = \int dx \ket{x}\bra{x}$ implica que a normalização da base tem que ser $\braket{x}{x'} = \delta(x-x')$.)
+
+Identificamos $f(x) = \braket{x}{f}$ de modo que:
+\begin{equation}
+    \ket{f} = \hat{I}\ket{f} = \int_a^b \ket{x}\braket{x}{f}\, dx = \int_a^b \underbrace{\ket{x}}_{\text{base}} f(x)\, dx
+\end{equation}
+
+\fbox{\parbox{0.92\textwidth}{
+\textbf{RESUMO}
+\begin{align*}
+    \hat{I} = \int_a^b dx\, \ket{x}\bra{x} \quad &\longleftrightarrow \quad \hat{I} = \sum_{i=1}^N \ket{x_i}\bra{x_i} \\[2mm]
+    \braket{x}{x'} = \delta(x-x') \quad &\longleftrightarrow \quad \braket{x_i}{x_j} = \delta_{ij} \\[2mm]
+    \ket{f} = \int_a^b f(x)\ket{x}\, dx \quad &\longleftrightarrow \quad \ket{f} = \sum_{i=1}^N f(x_i)\ket{x_i} \\[2mm]
+    f(x) = \braket{x}{f} \quad &\longleftrightarrow \quad f(x_i) = \braket{x_i}{f}
+\end{align*}
+}}
+
+\textbf{i)} A função
+\begin{equation}
+    g(x-x') = \frac{1}{\sqrt{\pi \Delta^2}} \exp\left[-\frac{(x-x')^2}{\Delta^2}\right]
+\end{equation}
+se chama \textbf{gaussiana}. Ela é um pico simétrico em torno do máximo em $x' = x$, $g(x-x') = g(x'-x)$. A largura do pico é proporcional a $\Delta$.
+
+A sua área é unitária, \textbf{INDEPENDENTE DO VALOR DE $\Delta$}.
+\begin{equation}
+    \int_{-\infty}^{\infty} g(x-x')\, dx' = 1
+\end{equation}
+
+No limite $\Delta \to 0$ o pico se torna mais estreito e mais alto, e a função se torna uma representação da função delta (simétrica, infinitamente concentrada em $x' = x$, área unitária).
+\begin{equation}
+    \boxed{\delta(x-x') = \lim_{\Delta \to 0} \frac{1}{\sqrt{\pi \Delta^2}} \exp\left[-\frac{(x-x')^2}{\Delta^2}\right]}
+\end{equation}
+
+\textbf{ii)} A derivada da função delta pode ser definida
+\begin{equation}
+    \frac{d}{dx}\delta(x-x') = -\frac{d}{dx'}\delta(x-x')
+\end{equation}
+o seu efeito dentro de uma integral é obtido facilmente
+\begin{equation}
+    \int_{-\infty}^{\infty} \left[\frac{d}{dx}\delta(x-x')\right] f(x')\, dx' = \frac{d}{dx}\underbrace{\int_{-\infty}^{\infty} \delta(x-x') f(x')\, dx'}_{\text{não é a variável de integração}} = \frac{d}{dx}f(x)
+\end{equation}
+
+\textbf{Cuidado!} O símbolo $\delta'(x-x')$ significa $\dfrac{d}{dx}\delta(x-x')$ e não $\dfrac{d}{dx'}\delta(x-x')$, que é $-\delta'(x-x')$.
+
+\textbf{iii)} Vimos $\delta(x-x')$ como o limite de uma função gaussiana, agora vamos obter $\delta(x-x')$ como uma integral.
+
+A relação entre $f(x)$ e sua \textbf{TRANSFORMADA DE FOURIER} é
+\begin{equation}
+    \label{eq:aula6_fourier_direta}
+    f(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-ikx} f(x)\, dx \tag{1}
+\end{equation}
+e
+\begin{equation}
+    \label{eq:aula6_fourier_inversa}
+    f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{ikx} f(k)\, dk \tag{2}
+\end{equation}
+
+Por exemplo, $f(x) = e^{-x^2}$ tem
+\begin{equation}
+    f(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-ikx}\, e^{-x^2}\, dx
+\end{equation}
+\begin{equation}
+    = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\left(x+\frac{ik}{2}\right)^2} e^{-k^2/4}\, dx
+\end{equation}
+
+A integral $\displaystyle\int_{-\infty}^{\infty} e^{-(x-a)^2}\, dx = \sqrt{\pi}$, mesmo que $a$ seja complexo.
+\begin{equation}
+    f(k) = \frac{1}{\sqrt{2}}\, e^{-k^2/4}
+\end{equation}
+é a Transformada de Fourier de $e^{-x^2}$.
+
+Observe que $f(k)$ \textbf{NÃO É} $f(x)$ com a troca $x \to k$! Por isso alguns autores usam um símbolo diferente, $\tilde{f}(k)$, para a transformada de Fourier.
+
+Levando (1) em (2):
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} dk\, e^{ikx} \underbrace{\left(\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-ikx'} f(x')\, dx'\right)}_{f(k)}
+\end{equation}
+\begin{equation}
+    = \int_{-\infty}^{\infty} \left(\frac{1}{2\pi}\int_{-\infty}^{\infty} dk\, e^{ik(x-x')}\right) f(x')\, dx'
+\end{equation}
+
+portanto
+\begin{equation}
+    \label{eq:aula6_delta_fourier}
+    \boxed{\delta(x-x') = \frac{1}{2\pi} \int_{-\infty}^{\infty} dk\, e^{ik(x-x')}}
+\end{equation}

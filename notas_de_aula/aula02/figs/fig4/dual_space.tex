@@ -1,0 +1,22 @@
+\documentclass[tikz,multi=true]{standalone}
+\usetikzlibrary{arrows.meta}
+
+\begin{document}
+    \begin{tikzpicture}
+        \draw[fill=gray!5, thick, rotate=60] (-0.5,0) ellipse (2.cm and 1.cm);
+        \node at (0,.4) {$\langle u|$};
+        \node at (-.4,-.5) {$\langle w| + \langle z|$};
+        \node at (-.7,-1.4) {$\langle u|\alpha^*$};
+        
+        \draw[dashed] (1.5,1.5) -- (1.5,-2.5);
+        
+        \begin{scope}[xshift=3cm, rotate=0]
+        \draw[fill=gray!5, thick, rotate=120] (-0.5,0) ellipse (2.cm and 1.cm);
+        
+        \node at (0,.4) {$|u\rangle$};
+        \node at (.4,-.5) {$|w\rangle + |z\rangle$};
+        \node at (.7,-1.4) {$\alpha|u\rangle$};
+        \end{scope}
+    
+    \end{tikzpicture}
+\end{document}

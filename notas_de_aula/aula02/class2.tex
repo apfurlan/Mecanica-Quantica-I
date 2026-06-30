@@ -1,0 +1,512 @@
+\section*{(2a aula) Espaços Vetoriais (seções 1.1-1.3)}
+
+A ferramenta matemática essencial da Mecânica Clássica é a Teoria de Equações Diferenciais Ordinárias. 
+Na Mecânica Quântica (MQ) temos a \textbf{Álgebra Linear} e a \textbf{Teoria das Equações Diferenciais Parciais} 
+(EDP) como fundamentais. Nosso curso vai começar com uma revisão de \textbf{Álgebra Linear}. As EDP's aparecerão 
+mais tarde.
+
+Por que Álgebra Linear? Como veremos, nos postulados da MQ, o estado de uma partícula é representado, não por 
+uma função vetorial ${\bm r}(t)$ como na Mecânica Clássica, mas sim como um elemento de um espaço vetorial, 
+representado pelo símbolo $\ket{\psi(t)}$. A conexão desses objetos com a função de onda probabilística 
+$\Psi\prt{\mathbf{r},t}$ será discutida quando estabelecermos os postulados. Esqueça a Física por enquanto 
+e se concentre em entender as propriedades dos \textbf{ESPAÇOS VETORIAIS}.
+\begin{shadequote}
+    Um \textbf{ESPAÇO VETORIAL} $V$ é uma coleção de objetos chamados \textbf{VETORES} 
+    $\ket{v_1}$, $\ket{v_2}$, $\ket{v_3}$, $\dots$ com duas operações definidas
+    \begin{align}
+        \text{Soma :} \quad &  \ket{u} + \ket{v} \in V \\
+        \text{Multiplicação por escalar :} \quad & a\ket{v} \in V 
+    \end{align}
+\end{shadequote}
+
+
+Esse escalar pode ser um número real ou complexo, no primeiro temos um \textbf{E.V. REAL} no outro \textbf{E.V. COMPLEXO}. 
+\textbf{Nota}: O vetor não é nem real nem complexo! As propriedades da soma de vetores e multiplicação por escalares 
+são as que você esperaria:
+
+\begin{enumerate}
+    \item $a(\ket{u} + \ket{w}) = a\ket{u} + a\ket{w}$ \quad (distributiva)
+    \item $(a + b)\ket{v} = a\ket{v} + b\ket{v}$ \quad (distributiva)
+    \item $a(b\ket{v}) = (ab)\ket{v}$ \quad (associativa)
+    \item $\ket{v} + \ket{w} = \ket{w} + \ket{v}$ \quad (comutativa)
+    \item $\ket{v} + (\ket{w} + \ket{z}) = (\ket{v} + \ket{w}) + \ket{z}$ \quad (associativa)
+    \item $\ket{v} + \ket{0} = \ket{v}$ \quad (existe o vetor nulo)
+    \item $\ket{v} + (-\ket{v}) = \ket{0}$ \quad (existe o inverso do vetor)
+\end{enumerate}
+
+É um jogo que os matemáticos adoram demonstrar outras propriedades dos espaços vetoriais usando apenas as 
+propriedades acima.
+
+
+
+{\bf Exemplo: } Prove que só existe um único vetor nulo em $V$.
+Suponha que $\ket{0}$ e $\ket{0'}$ sejam vetores nulos.
+\begin{align*}
+    \ket{0} + \ket{0'} &= \ket{0} \quad \text{(por 6, pois $\ket{0'}$ é nulo)} \\
+    \ket{0} + \ket{0'} &= \ket{0'} \quad \text{(por 6, pois $\ket{0}$ é nulo)}
+\end{align*}
+Logo, $\ket{0} = \ket{0'}$ (são os mesmo vetores).
+
+{\bf Exemplo :} Setas em um plano formam um espaço vetorial real. 
+Aqui você tem que informar como se somam setas e como se multiplicam 
+setar por escalares.
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.5\textwidth}
+        \input{class2/figs/fig1/sum_arrow.tex}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+        \input{class2/figs/fig2/scalar_mult_arrow.tex}
+        \vspace{1cm}
+        \input{class2/figs/fig3/inv_arrow.tex}
+        \vspace{1cm}
+    \end{subfigure}
+    \caption{é a maneira de somar $V$ e $W$. $V+W$ é uma seta no plano.
+    é uma maneira de multiplicar por um numero real (se $a<0$ inverta a seta).$W$ é o inverso de $V$}
+\end{figure}
+${\vec 0}$ é uma seta de tamanho zero.
+
+{\bf Exemplo :} O conjunto de todas as matrizes reais $2\times2$ formam 
+um espaço vetorial real se as operações de soma e multiplicação por escalar forem, respectivamente
+
+\[
+    \begin{bmatrix}
+    a & b \\
+    c & d
+    \end{bmatrix}
+    +
+    \begin{bmatrix}
+    a' & b' \\
+    c' & d'
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    a + a' & b + b' \\
+    c + c' & d + d'
+    \end{bmatrix}
+    \qquad \text{e} \qquad  
+    \alpha \begin{bmatrix}
+    a & b \\
+    c & d
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    \alpha a & \alpha b \\
+    \alpha c & \alpha d
+    \end{bmatrix}
+\]
+
+Com essas definições:
+\begin{itemize}
+    \item Vetor nulo: $\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}$
+    \item Inverso de $\begin{bmatrix} a & b \\ c & d \end{bmatrix}$ é $\begin{bmatrix} -a & -b \\ -c & -d \end{bmatrix}$
+\end{itemize}
+
+No entanto, o conjunto das matrizes da forma $\begin{bmatrix} a & b \\ c & 1 \end{bmatrix}$  (com $a, b, c$ reais) 
+{\bf não} forma um espaço vetorial com essas regras, pois:
+\[
+\begin{bmatrix} a & b \\ 1 & c \end{bmatrix}
++
+\begin{bmatrix} a' & b' \\ 1 & c' \end{bmatrix}
+=
+\begin{bmatrix} a + a' & b + b' \\ c+c' & 2 \end{bmatrix}
+\]
+não pertence ao conjunto.
+\begin{observação}
+Não se preocupe com as 7 regras acima, elas impõem propriedades 
+inteiramente naturais para a soma de vetores e multiplicação pode escalar.
+Algumas propriedades derivadas dessas 7, que à  principio deveriam ser
+demonstradas, podem ser lembradas por referencia ao espaco vetorial com
+que você está mais familiarizado, o conjunto de setas no plano. Por exemplo
+(tente demonstrar) : 
+
+\begin{equation*}
+    0\ket{0} = \ket{0} & \longrightarrow \underbrace{(0+1)\ket{V}}_{\text{(por 2)}} =
+        0\ket{V} + 1\ket{V} & \longrightarrow 1\ket{V} = 0\ket{V} + 1\ket{V} = 0\ket{0} \longrightarrow 0\ket{0} = \ket{0} \\
+\end{equation*}
+%     0\ket{0} = \ket{0} \longrightarrow (0+1)\ket{V} = \text{(por 2)} \\ 
+%     0\ket{V} + 1\ket{V} \longrightarrow 1\ket{V} = 0\ket{V} + 1\ket{V} = 0\ket{0} \longrightarrow 0\ket{0} = \ket{0} \\
+% \]
+\begin{equation}
+    \underbrace{\ket{-V}}_{\text{(o inverso de $\ket{V}$ é unico)}} = \ket{0} =(por *) (1-1)\ket{V} = (por 2) ->  1\ket{V} + (-1)\ket{V}
+    como 1\ket{V} = \ket{V}, segue de 7 que -\ket{V} = \ket{-V}
+\end{equation}
+
+\begin{shadequote}
+Um conjunto de $N$ vetores não-nulos é \textbf{LINEARMENTE INDEPENDENTE} se a equação:
+    \begin{equation}
+        \sum_{i=1}^N a_i \ket{v_i} = \ket{0}    
+    \end{equation}
+só tem a solução trivial (com todos $a_i = 0$). Caso exista uma solução não-trivial, o conjunto é {\bf LINEARMENTE DEPENDENTE}.
+\end{shadequote}
+
+
+
+{\bf Exemplo :} Dois vetores no plano, não colineares, são LI. Três vetores no plano são LD, pois um deles pode 
+ser escrito como combinação dos outros dois.(FAZER IMAGENS). Esse exemplo, por se tratar de um espaço vetorial 
+de naturezageométrica, não ilustra bem o processo usado para se determinar se um conjunto de vetores é LI ou LD.
+
+{\bf Exemplo :}
+$\ket{1} = \begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+    \end{bmatrix}$, 
+    $\ket{2} = \begin{bmatrix}
+    1 & 1 \\
+    0 & 1
+    \end{bmatrix}$
+$\ket{3} = \begin{bmatrix}
+    -2 & -1 \\
+    0 & -2
+    \end{bmatrix}$
+são LI ou LD ? 
+formamos uma combina;cao linear generica e igualamos a $\ket{0}$
+$$
+a\ket{1}+b\ket{2}+c\ket{3} = (pelas regras de soma e multiplicaáo por escalar)\begin{bmatrix}
+    b-2c & a+b+c \\
+    0 & b-2c
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+    0 & 0 \\
+    0 & 0
+    \end{bmatrix} =\ket{0}
+$$
+a soluçao dessa equaçao vetorial é obtida resolvendo 
+\begin{equation}
+    \begin{array}{l}
+        b - 2c = 0 \\
+        a + b -c = 0 \\
+        b - 2c = 0
+    \end{array} 
+\end{equation}
+claramente $a=-1$, $b=2$ e $c=1$ é uma solução não trivial  logo vetores LD. 
+
+
+\begin{shadequote}
+    A \textbf{DIMENSÃO} de um espaço vetorial (EV) é o número máximo de vetores LI que ele pode 
+    acomodar. $\mathbb{V}^n(R)$ é um espaço vetorial real de dimensão $n$, e $\mathbb{V}^n(C)$ 
+    é um  espaço vetorial complexo de dimensão $n$.
+\end{shadequote}
+
+{\bf Exemplo:} O EV de setas no plano tem dimensao 2 pos duas setas não colineares são LI e 
+setas quaisquer são LD.
+
+{\bf Exemplo:} O EV matrizes reais $2\times2$ tem dimensão 4 pois
+\begin{equation}
+    \begin{bmatrix}
+    1 & 0 \\
+    0 & 0
+    \end{bmatrix},
+    \begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+    \end{bmatrix},
+    \begin{bmatrix}
+    0 & 0 \\
+    1 & 0
+    \end{bmatrix},
+    \begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+    \end{bmatrix}
+\end{equation}
+são LI. (mostre isso) e qualquer outro vetor $\begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+    \end{bmatrix}$ pode ser escrito como combinação linear desses 4 vetores. 
+
+Você percebe que, para provar que a dimensão de um EV é $n$ você deve : 
+\begin{itemize}
+    \item exibir $n$ vetores LI
+    \item mostrar que um vetor genérico pode ser escrito como uma combinação linear 
+    desses $n$ vetores. 
+\end{itemize}
+
+{\bf TEOREMA:} Qualquer vetor em um espaço de dimensão $n$ pode ser escrito como combinação
+linear de $n$ vetores LI. 
+    
+\begin{equation}
+    \ket{V} = \sum^n_{i=1}{v_i}\ket{i}
+\end{equation}
+PROVA : Suponha que exista um $\ket{V}$ para o qual não seja possível encontrar esses 
+coeficientes $v_i$, isso implicaria que $\ket{V}$, mais os $n$ vetores $\ket{i}$, são
+LI o que não pode acontecer em um espaço de dimensão $n$.
+
+{\bf DEFINIÇÃO :} Qualquer conjunto de $n$ vetores LI em um $\mathbb{V}^n$ forma uma BASE.
+{\bf TEOREMA :} As componentes de um vetor em uma base são únicos
+{\bf PROVA :}
+\begin{equation}
+    \ket{V} = \sum^n_{i=1}{v_i}\ket{i}
+\end{equation}
+\begin{equation}
+    \ket{V} = \sum^n_{i=1}{v^\prime}\ket{i}
+\end{equation}
+subtraindo
+\begin{equation}
+    \ket{0} = \sum^n_{i=1}{v_i-v^\prime_i}\ket{i}
+\end{equation}
+como a base é necessariamente LI -> $v_i=v^\prime_i$ (pela definição de vetores LI)
+
+
+As equações da Mec. Clássica e do Eletromagnetismo são equações que relacionam vetores do tipo
+"seta". 
+\begin{equation*}
+\begin{split}
+    &\vec{F} = m\vec{a}, \\ 
+    \nabla\times&\vec{E}+\frac{1}{c} \frac{\partial \vec{B}}{\partial t} = 0, \ldots
+\end{split}
+\end{equation*}
+Essas setas $\vec{F},\vec{B},\vec{E},$ etc existem independentemente de uma base, no entanto pra fazer
+cálculos escolhemos um sistema de eixos cartesianos com 3 versores $\hat{i},\hat{j},\hat{k}$. Em termos
+desta base os vetores das equações são expressos a cada equaçào vetorial resultam em 3 equações
+diferenciais para as componentes dos vetores. Por exemplo : 
+
+\begin{equation}
+\nabla\times&\vec{E}+\frac{1}{c} \frac{\partial \vec{B}}{\partial t} = 0 \Longrightarrow \left\{\begin{array}{l}
+    \dfrac{\partial E_z}{\partial y} - \dfrac{\partial E_y}{\partial z} + \dfrac{1}{c} \dfrac{\partial B_x}{\partial t} = 0 \\
+    \dfrac{\partial E_x}{\partial z} - \dfrac{\partial E_z}{\partial x} + \dfrac{1}{c} \dfrac{\partial B_y}{\partial t} = 0 \\
+    \dfrac{\partial E_y}{\partial x} - \dfrac{\partial E_x}{\partial y} + \dfrac{1}{c} \dfrac{\partial B_z}{\partial t} = 0
+\end{array}\right.
+\end{equation}
+
+As equações da Mecânica Quantica são relações entre vetores de um espaço vetorial de estados físicos. Os  cálculos 
+são feitos (e as EPS da MQ são obtidas) quando escolhemos uma base para o espaço vetorial e escrevemos os vetores
+nessa base.
+
+\hline
+Vimos na Mecanica Clássica a relcào existente entre as componentes de um mesmo vetor $v$ em duas bases distintas.
+FAZER DESENHO
+${\bm v} = v_x\hat{i} + v_y\hat{j} + v_z\hat{k} = v_1\hat{e}_1 + v_2\hat{e}_2 + v_3\hat{e}_3$
+\begin{equation*}
+    \begin{bmatrix} v_x \\ v_y \\ v_z \end{bmatrix} =\begin{bmatrix} \bigLambda \end{bmatrix}
+    \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix}
+\end{equation*}
+\hline
+
+As operações de norma de vetores e multiplicação por escalar para vetores escritos em uma mesma base, fica 
+
+\begin{equation}
+    \ket{V} = \sum^n_{i=1}{v_i}\ket{i}     \ket{W} = \sum^n_{i=1}{w_i}\ket{i}
+\end{equation}
+\begin{equation}
+    \ket{V} + \ket{W} = \sum^n_{i=1}{v_i+w_i}\ket{i}
+\end{equation}
+\begin{equation}
+    \alpha\ket{V} = \sum^n_{i=1}{\alpha v_i}\ket{i}
+\end{equation}
+
+
+\subsection*{Produto Interno}
+
+O produto interno associa um número (real ou complexo) a um par de vetores. No espaço vetorial das "setas" existe 
+uma definição geométrica para o produto interno:
+\[
+{\bm v} \cdot {\bm w} = |{\bm v}| |{\bm w}| \cos \theta
+\]
+
+onde $|{\bm v}|$ é o tamanho da seta ${\bm v}$ e o $\theta$ é o ângulo entre ${\bm v}$ e ${\bm w}$. No caso de 
+EV gerais exigimos 3 propriedades de qualquer produto interno a ser proposto.
+\begin{enumerate}
+    \item $\bra{U}\ket{W} = \bra{W}\ket{U}^*$
+    \item $\bra{V}\ket{V} \geq 0$, e $0$ apenas se $\ket{V} = \ket{0}$
+    \item $\bra{V}[a\ket{W} + b\ket{Z}] = a\bra{V}\ket{W} + b \bra{V}\ket{Z}$
+\end{enumerate}
+aqui denotamos o produto interno pelo simbolo $\bra{U}\ket{W}$ e consideramos o caso geral onde 
+esse número é complexo (caso estejamos analisando um produto interno real a conjugação em 1. não
+tem efeito). O produto interno de setas obedece essas 3 propriedades. 
+
+Em um EV generico se pode definir um produto interno por meio dos 
+valiores atribuidos aos produtos internos de uma base. Veja 
+
+\begin{equation}
+    Se \ket{V} = \sum^n_{i=1}{v_i}\ket{i}  e   \ket{W} = \sum^n_{i=1}{w_i}\ket{i}
+\end{equation}
+\begin{equation}
+    \braket{V}{W} = \sum^n_{i=1}{w_i} \bra{v}\ket{i} por (3)
+\end{equation}
+\begin{equation}
+    \braket{V}{i} = \braket{i}{V}^* por (1)
+\end{equation}
+\begin{equation}
+    \braket{i}{V}^* = \cch{\sum_{j=1}^n v_j \braket{i}{j}}^*  por (3)
+\end{equation}
+\begin{equation}
+     = {\sum_{j=1}^n v^*_j \braket{i}{j}}  (conjugaçao complexa de unm produto)
+\end{equation}
+\begin{equation}
+     = {\sum_{j=1}^n v^*_j \braket{j}{i}}  por (1)
+\end{equation}
+e finalmente
+\begin{equation}
+     \braket{V}{W} = {\sum_{i=1}^n\sum_{j=1}^n v^*_j w_i\bra{j}\ket{i}} 
+\end{equation}
+se conhecermos os valores de $\braket{i}{j}$, os protudos internos da base, podemos calcular 
+qualquer produto interno.
+
+\begin{shadequote}
+    Uma base é ORTONORMAL quando o produto interno de seus elementos satisfaz $\braket{i}{j}=\delta_{ij}$
+\end{shadequote}
+ 
+ Em uma base ortonormal, temos:
+\[
+\braket{V}{W} = \sum_{i=1}^n v_i^* w_i
+\]
+veja que essa regra respeita as propriedades 1-3, em particular 
+\[
+\braket{V}{V} = \sum_{i=1}^n |v_i|^2 \geq 0
+\]
+Definimos como a norma de um vetor
+\[
+    |v_i| = \sqrt{\braket{V}{V}}
+\]
+onde $\braket{V}{V}$ é um número real por (1)
+
+{\bf EXEMPLO :} No caso das setas, se usamos como base um conjunto de setar de tamanho 1 
+e mutuamente ortogonais
+\[
+    \hat{i}\cdot\hat{i} = \hat{j}\cdot\hat{j} = \hat{k}\cdot\hat{k} = 1
+\]
+\[
+    \hat{i}\cdot\hat{j} = \hat{i}\cdot\hat{k} = \hat{j}\cdot\hat{k} = 0
+\]
+o produto interno de $v=v_1\hat{i}+v_2\hat{j}+v_3\hat{k}$ e $w=w_1\hat{i}+w_2\hat{j}+w_3\hat{k}$ 
+fica 
+\begin{equation}
+    {\bm v}\cdot{\bm w} = \sum_{i=1}^3 v_i\cdot w_i
+\end{equation}
+
+{\bf EXEMPLO :} No caso das matrizes $2\times2$ podemos usar como base
+\[
+    \ket{1}=\begin{bmatrix}
+    1 & 0 \\
+    0 & 0
+    \end{bmatrix},
+    \ket{2}=\begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+    \end{bmatrix},
+    \ket{3}=\begin{bmatrix}
+    0 & 0 \\
+    1 & 0
+    \end{bmatrix},
+    \ket{4}=\begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+    \end{bmatrix}
+\]
+e definir um produto interno por meio de $\braket{i}{j}=\delta_{ij}$. Assim 
+\[
+    \ket{V}=v_1\ket{1}+v_2\ket{2}+v_3\ket{3}+v_4\ket{4} = 
+    \begin{bmatrix}
+        v_1 & v_2 \\
+        v_3 & v_4
+    \end{bmatrix} 
+\]
+e 
+\[
+    \braket{V}{W} = \sum_{i=1}^4v_iw_i
+\]
+A norma de $\ket{V} = 
+    \begin{bmatrix}
+        1 & 2 \\
+        0 & 1
+    \end{bmatrix}$ é 
+
+\[
+|V| = \sqrt{\braket{V}{V}} = \sqrt{1^2+2^2+0^2+1^2} = \sqrt{6}
+\]
+OBS : Ao definir um produto interno por meio dos produtos internos da base deve-se ter
+cuidado para que esses respeitem as propriedades (1) e (2). No caso de matrizes não
+poderíamos invertar um produto interno com os valores
+\[
+    \braket{1}{1}=-1 ou \braket{1}{2} = 1 e \braket{2}{1} = 0
+\]
+pois estaríamos violando 2 no primeiro caso e 1 no segundo caso.
+
+OBS: No caso de uma base NÃO ORTOGONAL o produto interno deve ser ser calculado usando 
+poderíamos inventar um produto interno com os valores
+\[
+    \braket{V}{W} = \sum_{i=1}^{n}\sum_{j=1}^{n}v^*_jw_i \braket{j}{i}
+\]
+e você deve fornecer os valores de $\braket{j}{i}$
+
+\hline
+    Essa expressao pode ser entendida como o produto matricial abaixo
+\[
+\begin{bmatrix}
+v_1^* & v_2^* & \cdots & v_n^*
+\end{bmatrix}
+\begin{bmatrix}
+\langle 1|1 \rangle & \langle 1|2 \rangle & \cdots & \langle 1|n \rangle \\
+\langle 2|1 \rangle & \langle 2|2 \rangle & \cdots & \langle 2|n \rangle \\
+\vdots & \vdots & \ddots & \vdots \\
+\langle n|1 \rangle & \langle n|2 \rangle & \cdots & \langle n|n \rangle
+\end{bmatrix}
+\begin{bmatrix}
+w_1 \\
+w_2 \\
+\vdots \\
+w_n
+\end{bmatrix}
+= \langle V | W \rangle
+\]
+\hline
+Os produtos internos da base são num certo sentido, o que define o produto interno.
+
+\subsection*{Espaço Vetorial Dual}
+Essa diferença no forma camo o vetor da esquerda é tratado na expressão do produto 
+interno (seus correspondentes na base são conjugadas) nos leva a definir um EV dual as 
+nosso EV original. Os vetores desse EVE deual usam o símbolo $\bra{V}$ (chamados bra)
+para distingui-los dos vetores $\ket{V}$ (chamados ket) do EV original. Existe uma 
+correspondencia entre os $\ket{V}$ do EV original e seus irmãos $\bra{V}$ do EV dual.
+Se $\ket{U}+\ket{Z}=\ket{W}$, então no espaço dual devemos ter $\bra{U}+\bra{Z}=\bra{W}$.
+Se $\ket{aU}=a\ket{U}$, então no espaço dual devemos ter $\bra{aU}=\bra{U}a^*$
+
+Porque essa conjugaçao do escalar ? Para que a regra (1) e a regra(3) do produto interno
+sejam respeitadas. O ponto é que esse espaço dual é apenas uma maneira de lembrar das 
+regras do produto interno com facilidade. O símbolo $\braket{W}{U}$ ao invés de ser 
+lido como  "o produto interno de $\ket{U}$ com $\ket{W}$, com $\ket{W}$ estando 
+à esquerda" fica "o produto interno do bra $\bra{W}$ com o ket $\ket{U}$". Se $\ket{W}=\sum_{i=1}^nw_i\ket{i}$, então o bra associado fica $\bra{W}=\sum_{i=1}^nw^*_i\bra{i}$
+e o produto interno pode ser calculado facilmente
+\[
+   \underbrace{\left(\sum_{i=1}^n w^*_i \bra{i}\right)}_{\bra{W}} \underbrace{\left(\sum_{j=1}^n u_j \ket{j}\right)}_{\ket{U}} = \sum_{i,j=1}^n w_i^* u_j \braket{i}{j}
+\]
+exatamente como deveria.
+
+A operação de achar o bra correspondente a um determinado ket se chama OPERAÇÃO ADJUNTA. Pense no 
+EV dual como uma espécia de imagem no espelho do EV original, onde cada ket tem seu 
+correspondente (com o pequeno detalhe da conjugação dos escalares). Essa imagem ajuda a 
+operar com o produto interno
+
+\begin{figure}[!htbp]
+\centering
+    \includegraphics[width=0.5\linewidth]{class2/figs/fig4/dual_space.pdf}
+    \caption{a Esquerda o espaço vetorial dual. A direita o espaço vetorial original}
+    \label{fig:enter-label}
+\end{figure}
+
+O produto interno permite exprimir as components de um vetor em uma base na forma de um 
+produto interno
+\[
+\ket{U} = \sum_{i=1}^n u_i \bra{i}
+\]
+Se a BASE FOR ORTONORMAL, podemos tornar o produto interno com $\bra{j}$ (dual de um dos 
+elementos da base).
+\[
+\braket{j}{U} = \sum_{i=1}^n u_i\underbrace{\braket{j}{i}}_{\delta_{ij}}=U_j
+\]
+então a componente $u_j$ é a projeção de $\ket{U}$ na "direção" $\ket{j}$ (veja 
+a lista de exercícios para o caso da base não ortonormal). Isso é análogo ao que 
+acontece com setas (FAZER DESENHO)
+\[
+{\bm V} = v_i\hat{i}+v_2\hat{j} \Longrightarrow {v_1} = V\cdot\hat{i}\quad e \quad v_2 = V\cdot\hat{j}
+\]
+
+OBS: A única comunicaçãoentre o EV original e o EV dual é no produto interno, quando 
+um bra e um ket produzem um número. NÃO FAZ SENTIDO SOMAR UM BRA E UM KET ! $\bra{U}+\ket{W}$ NÃO
+EXISTE.
+
+\end{document}

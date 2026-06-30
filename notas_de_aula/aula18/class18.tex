@@ -1,0 +1,265 @@
+\section*{(18\textordfeminine\ aula) --- Operadores de Criação e Destruição}
+
+\subsection*{Operadores de Criação e Destruição}
+
+É possível achar o espectro do Hamiltoniano do oscilador harmônico \textbf{SEM RECORRER A UMA EDO}.
+
+\begin{equation}
+    \hat{H} = \frac{\hat{P}^2}{2m} + \frac{1}{2}m\omega^2\hat{X}^2
+\label{eq:aula18_H_osc}
+\end{equation}
+
+Vamos apenas usar a propriedade $[\hat{X}, \hat{P}] = i\hbar$ que, caso você se recorde, foi derivada através da representação de $\hat{X}$ e $\hat{P}$ na base $\ket{x}$.
+
+\begin{align}
+    \bra{x}\hat{X}\hat{P}\ket{\Psi} &= -i\hbar \, x \frac{d\Psi}{dx} \label{eq:aula18_xXP} \\
+    \bra{x}\hat{P}\hat{X}\ket{\Psi} &= -i\hbar \frac{d}{dx}(x\Psi) = -i\hbar\Psi - i\hbar\, x \frac{d\Psi}{dx} \label{eq:aula18_xPX}
+\end{align}
+então
+\begin{equation}
+    \bra{x}\hat{X}\hat{P} - \hat{P}\hat{X}\ket{\Psi} = i\hbar \braket{x}{\Psi} \quad \Longrightarrow \quad [\hat{X}, \hat{P}] = i\hbar
+\label{eq:aula18_comutador_XP}
+\end{equation}
+
+Definimos o operador
+\begin{equation}
+    \hat{a} = \left( \frac{m\omega}{2\hbar} \right)^{1/2} \hat{X} + i \left( \frac{1}{2m\omega\hbar} \right)^{1/2} \hat{P}
+\label{eq:aula18_def_a}
+\end{equation}
+\begin{equation}
+    = \frac{1}{\sqrt{2}}\frac{\hat{X}}{b} + \frac{i}{\sqrt{2}}\frac{b}{\hbar}\hat{P} \qquad \left( b = \sqrt{\hbar/m\omega} \right)
+\label{eq:aula18_a_em_b}
+\end{equation}
+
+e seu adjunto
+\begin{equation}
+    \hat{a}^\dagger = \frac{1}{\sqrt{2}}\frac{\hat{X}}{b} - \frac{i}{\sqrt{2}}\frac{b}{\hbar}\hat{P}
+\label{eq:aula18_def_adagger}
+\end{equation}
+
+A relação $[\hat{X}, \hat{P}] = i\hbar$ implica em
+\begin{align}
+    [\hat{a}, \hat{a}^\dagger] &= \left[ \frac{1}{\sqrt{2}}\frac{\hat{X}}{b} + \frac{i}{\sqrt{2}}\frac{b}{\hbar}\hat{P} , \; \frac{1}{\sqrt{2}}\frac{\hat{X}}{b} - \frac{i}{\sqrt{2}}\frac{b}{\hbar}\hat{P} \right] \notag \\
+    &= \frac{-i}{2\hbar}[\hat{X}, \hat{P}] + \frac{i}{2\hbar}[\hat{P}, \hat{X}] = 1
+\label{eq:aula18_comutador_a_adagger}
+\end{align}
+
+Podemos escrever $\hat{H}$ usando $\hat{a}^\dagger\hat{a}$.
+
+\begin{align}
+    \hat{a}^\dagger \hat{a} &= \frac{1}{2}\frac{\hat{X}^2}{b^2} + \frac{1}{2}\frac{\hat{P}^2 b^2}{\hbar^2} + \frac{i}{2\hbar}(\hat{X}\hat{P} - \hat{P}\hat{X}) \notag \\
+    &= \frac{1}{2}\frac{m\omega \hat{X}^2}{\hbar} + \frac{1}{2}\frac{\hat{P}^2}{m\hbar\omega} - \frac{1}{2} \notag \\
+    &= \frac{\hat{H}}{\hbar\omega} - \frac{1}{2}
+\label{eq:aula18_adagger_a_H}
+\end{align}
+de onde
+\begin{equation}
+    \boxed{\hat{H} = \hbar\omega\left( \hat{a}^\dagger\hat{a} + \frac{1}{2} \right)}
+\label{eq:aula18_H_em_a}
+\end{equation}
+
+\textbf{Obs:} Note que os operadores $\hat{a}$ e $\hat{a}^\dagger$ não têm dimensão.
+
+\begin{equation}
+    \hat{H}\ket{E} = E\ket{E} \quad \text{fica, definindo } \varepsilon = \frac{E}{\hbar\omega},
+\label{eq:aula18_H_autoval}
+\end{equation}
+\begin{equation}
+    \left( \hat{a}^\dagger\hat{a} + \frac{1}{2} \right)\ket{\varepsilon} = \varepsilon\ket{\varepsilon}
+\label{eq:aula18_h_adimensional}
+\end{equation}
+onde chamamos de $\hat{h} \equiv \hat{a}^\dagger\hat{a} + \dfrac{1}{2}$ o \textbf{Hamiltoniano adimensional} e $\varepsilon$ o \textbf{autovalor adimensional}.
+
+\subsection*{Determinação dos Autovalores}
+
+Podemos determinar os autovalores $\varepsilon$ usando apenas as propriedades dos comutadores:
+\begin{align}
+    [\hat{a}, \hat{h}] &= \left[ \hat{a}, \hat{a}^\dagger\hat{a} + \frac{1}{2} \right] = \hat{a} \label{eq:aula18_a_h_comm} \\
+    [\hat{a}^\dagger, \hat{h}] &= \left[ \hat{a}^\dagger, \hat{a}^\dagger\hat{a} + \frac{1}{2} \right] = -\hat{a}^\dagger \label{eq:aula18_adagger_h_comm}
+\end{align}
+
+Se conhecemos um autovetor $\ket{\varepsilon}$ podemos obter outros usando $\hat{a}$ e $\hat{a}^\dagger$.
+
+\begin{align}
+    \hat{h}\left[ \hat{a}\ket{\varepsilon} \right] &= \left\{ \hat{a}\hat{h} - [\hat{a}, \hat{h}] \right\}\ket{\varepsilon} \notag \\
+    &= \hat{a}\varepsilon\ket{\varepsilon} - \hat{a}\ket{\varepsilon} = (\varepsilon - 1)\left[ \hat{a}\ket{\varepsilon} \right]
+\label{eq:aula18_h_a_ket}
+\end{align}
+$\Longrightarrow \hat{a}\ket{\varepsilon}$ é autovetor de $\hat{h}$ com autovalor $(\varepsilon - 1)$!
+
+Analogamente,
+\begin{align}
+    \hat{h}\left[ \hat{a}^\dagger\ket{\varepsilon} \right] &= \left\{ \hat{a}^\dagger\hat{h} - [\hat{a}^\dagger, \hat{h}] \right\}\ket{\varepsilon} \notag \\
+    &= \hat{a}^\dagger\varepsilon\ket{\varepsilon} + \hat{a}^\dagger\ket{\varepsilon} = (\varepsilon + 1)\left[ \hat{a}^\dagger\ket{\varepsilon} \right]
+\label{eq:aula18_h_adagger_ket}
+\end{align}
+$\Longrightarrow \hat{a}^\dagger\ket{\varepsilon}$ é autovetor de $\hat{h}$ com autovalor $(\varepsilon + 1)$!
+
+Isso mostra que se $\varepsilon$ é um autovalor de $\hat{h}$, $\varepsilon - 1, \varepsilon - 2, \varepsilon - 3, \dots$ também o são, bem como $\varepsilon + 1, \varepsilon + 2, \varepsilon + 3, \dots$.
+
+Como sabemos que os autovalores não podem ser negativos\footnote{O operador $\hat{H} = \dfrac{\hat{P}^2}{2m} + \dfrac{1}{2}m\omega^2\hat{X}^2$ é positivo definido, i.e., por envolver operadores ao quadrado, todos os autovalores são positivos.}, deve haver um autovetor $\ket{\varepsilon_0}$ tal que
+\begin{equation}
+    \hat{a}\ket{\varepsilon_0} = 0 \quad \Longrightarrow \quad \hat{a}^\dagger\hat{a}\ket{\varepsilon_0} = 0
+\label{eq:aula18_a_ket_eps0}
+\end{equation}
+ou
+\begin{equation}
+    \left( \hat{h} - \frac{1}{2} \right)\ket{\varepsilon_0} = 0 \quad \Longrightarrow \quad \hat{h}\ket{\varepsilon_0} = \frac{1}{2}\ket{\varepsilon_0}
+\label{eq:aula18_h_eps0}
+\end{equation}
+
+\fbox{\parbox{0.92\textwidth}{
+O menor autovalor de $\hat{h}$ é $1/2$!
+}}
+
+Atuando com $\hat{a}^\dagger$ no autovetor $\ket{1/2}$ obtemos $\varepsilon = 3/2, 5/2, 7/2, \dots$, então os autovalores de $\hat{h}$ são
+\begin{equation}
+    \varepsilon_n = n + \frac{1}{2} \qquad (n = 0, 1, 2, \dots)
+\label{eq:aula18_eps_n}
+\end{equation}
+
+Correspondentemente, os autovalores de $\hat{H}$ são
+\begin{equation}
+    \boxed{E_n = \hbar\omega\left( n + \frac{1}{2} \right) \qquad (n = 0, 1, 2, \dots)}
+\label{eq:aula18_En}
+\end{equation}
+
+O autovetor de $\hat{h}$ que é aniquilado por $\hat{a}$ é único pois, como vimos, ele tem autovalor $1/2$ e os autovalores discutidos são \textbf{NÃO-DEGENERADOS} em 1D.
+
+\subsection*{Normalização dos Autovetores}
+
+Vamos chamar $\ket{\varepsilon_n} = \ket{n}$. Assim, $\hat{a}^\dagger\hat{a}\ket{n} = n\ket{n}$ e $\hat{h}\ket{n} = (n+1/2)\ket{n}$.
+
+Vimos que $\hat{a}\ket{n} = c_n \ket{n-1}$, se $\ket{n}$ e $\ket{n-1}$ estão normalizados quem é $c_n$? Tome o adjunto
+\begin{equation}
+    \bra{n}\hat{a}^\dagger = \bra{n-1}c_n^*
+\label{eq:aula18_adjunto_an}
+\end{equation}
+e tome o produto interno
+\begin{equation}
+    \bra{n}\hat{a}^\dagger\hat{a}\ket{n} = |c_n|^2 \braket{n-1}{n-1}
+\label{eq:aula18_produto_interno_cn}
+\end{equation}
+\begin{equation}
+    n = |c_n|^2 \quad \longrightarrow \quad \text{escolhemos } \boxed{c_n = \sqrt{n}}
+\label{eq:aula18_cn}
+\end{equation}
+(usei $\hat{a}^\dagger\hat{a} = \hat{h} - 1/2$ e $\hat{h}\ket{n} = (n+1/2)\ket{n}$).
+
+Analogamente
+\begin{equation}
+    \hat{a}^\dagger\ket{n} = c_{n+1}\ket{n+1} \quad \Longrightarrow \quad \bra{n}\hat{a} = \bra{n+1}c_{n+1}^*
+\label{eq:aula18_adagger_n}
+\end{equation}
+\begin{equation}
+    \bra{n}\hat{a}\hat{a}^\dagger\ket{n} = |c_{n+1}|^2\braket{n+1}{n+1}
+\label{eq:aula18_produto_interno_cn1}
+\end{equation}
+
+usando $\hat{a}\hat{a}^\dagger = \hat{a}^\dagger\hat{a} + 1$ (isso vem do comutador) e $\bra{n}\hat{a}^\dagger\hat{a}\ket{n} = n$, temos
+\begin{equation}
+    n + 1 = |c_{n+1}|^2 \quad \longrightarrow \quad \text{escolhemos } \boxed{c_{n+1} = \sqrt{n+1}}
+\label{eq:aula18_cn1}
+\end{equation}
+
+Assim
+\begin{equation}
+    \boxed{\hat{a}\ket{n} = \sqrt{n}\ket{n-1}} \qquad \text{e} \qquad \boxed{\hat{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}}
+\label{eq:aula18_a_adagger_action}
+\end{equation}
+
+O operador $\hat{a}^\dagger\hat{a}$ ($=\hat{h} - 1/2$) se chama \textbf{operador número} pois
+\begin{equation}
+    \hat{a}^\dagger\hat{a}\ket{n} = \left( \hat{h} - \frac{1}{2} \right)\ket{n} = n\ket{n} \qquad \text{($n$ = número de excitação do estado $\ket{n}$)}
+\label{eq:aula18_operador_numero}
+\end{equation}
+
+\textbf{Obs:} Como os $\ket{n}$ são autovetores de um operador Hermitiano, segue que $\braket{n}{m} = 0$ se $m \neq n$. Admitimos que $\braket{n}{n} = 1$ para todos os $n$.
+
+Note que ainda não falamos em autofunções, mesmo assim podemos calcular valores médios de qualquer operador que envolve $\hat{X}$ ou $\hat{P}$ usando os estados $\ket{n}$.
+
+\subsection*{Valores Médios sem Integrais}
+
+\begin{equation}
+    \boxed{\hat{X} = \frac{1}{\sqrt{2}}b\left( \hat{a} + \hat{a}^\dagger \right)} \qquad \text{e} \qquad \boxed{\hat{P} = \frac{i}{\sqrt{2}}\frac{\hbar}{b}\left( \hat{a}^\dagger - \hat{a} \right)}
+\label{eq:aula18_X_P_em_a}
+\end{equation}
+
+Por exemplo, para o estado fundamental
+\begin{equation}
+    \bra{0}\hat{X}\ket{0} = \frac{b}{\sqrt{2}}\bra{0}\hat{a} + \hat{a}^\dagger\ket{0}
+\label{eq:aula18_X_estado_fund}
+\end{equation}
+agora usamos $\hat{a}\ket{0} = 0$ e $\hat{a}^\dagger\ket{0} = \ket{1}$
+\begin{equation}
+    = \frac{b}{\sqrt{2}}\braket{0}{1} = 0
+\label{eq:aula18_X_estado_fund_zero}
+\end{equation}
+
+\begin{equation}
+    \bra{0}\hat{X}^2\ket{0} = \frac{b^2}{2}\bra{0}\hat{a}\hat{a} + \hat{a}\hat{a}^\dagger + \hat{a}^\dagger\hat{a} + \hat{a}^\dagger\hat{a}^\dagger\ket{0}
+\label{eq:aula18_X2_estado_fund}
+\end{equation}
+
+Claramente os únicos termos não nulos serão os que envolverem o mesmo número de $\hat{a}$'s e $\hat{a}^\dagger$'s.
+
+Ainda assim:
+\begin{equation}
+    \bra{0}\hat{a}\hat{a}^\dagger\ket{0} = \bra{0}\hat{a}\ket{1} = \braket{0}{0} = 1
+\label{eq:aula18_aadagger_estado_fund}
+\end{equation}
+\begin{equation}
+    \bra{0}\hat{a}^\dagger\hat{a}\ket{0} = 0 \qquad \text{(operador número)}
+\label{eq:aula18_adaggera_estado_fund}
+\end{equation}
+
+então
+\begin{equation}
+    \bra{0}\hat{X}^2\ket{0} = \frac{b^2}{2} = \frac{\hbar}{2m\omega}
+\label{eq:aula18_X2_resultado}
+\end{equation}
+
+\fbox{\parbox{0.92\textwidth}{
+Veja que não foi preciso fazer nenhuma integral!
+}}
+
+Nos exercícios você irá praticar com esses operadores.
+
+\subsection*{As Autofunções}
+
+E as autofunções, $\braket{x}{n} = \psi_n(x)$, será que dá para obtê-las com esses operadores? Sim. Começamos com o estado fundamental. Usamos
+\begin{equation}
+    \hat{a}\ket{0} = 0,
+\label{eq:aula18_a_ket0}
+\end{equation}
+projetando em $\bra{x}$ e usando $\hat{a} = \dfrac{1}{\sqrt{2}}\dfrac{\hat{X}}{b} + \dfrac{i}{\sqrt{2}}\dfrac{b}{\hbar}\hat{P}$ obtenho uma EDO para $\braket{x}{0} = \psi_0(x)$.
+
+\begin{equation}
+    \frac{1}{\sqrt{2}}\frac{x}{b}\psi_0(x) + \frac{b}{\sqrt{2}}\frac{d\psi_0(x)}{dx} = 0
+\label{eq:aula18_edo_psi0}
+\end{equation}
+
+\begin{equation}
+    \psi_0' = -\left( \frac{x}{b^2} \right)\psi_0 \, , \quad \text{cuja solução normalizada é}
+\label{eq:aula18_edo_psi0_resolvida}
+\end{equation}
+
+\begin{equation}
+    \boxed{\psi_0(x) = \left( \frac{1}{\pi b^2} \right)^{1/4} e^{-x^2/2b^2}}
+\label{eq:aula18_psi0}
+\end{equation}
+
+E as outras autofunções? Use o operador $\hat{a}^\dagger$
+\begin{equation}
+    \ket{1} = \hat{a}^\dagger\ket{0}, \quad \text{com} \quad \hat{a}^\dagger = \frac{1}{\sqrt{2}}\frac{\hat{X}}{b} - \frac{i}{\sqrt{2}}\frac{b}{\hbar}\hat{P}
+\label{eq:aula18_ket1}
+\end{equation}
+
+projetando em $\bra{x}$:
+\begin{align}
+    \psi_1(x) &= \frac{1}{\sqrt{2}}\frac{x}{b}\psi_0 - \frac{b}{\sqrt{2}}\psi_0' \notag \\
+    &= \frac{1}{\sqrt{2}}\frac{x}{b}\psi_0 + \left( \frac{b}{\sqrt{2}} \right)\left( \frac{x}{b^2} \right)\psi_0 \notag \\
+    &= \boxed{\sqrt{2}\,\frac{x}{b}\left( \frac{1}{\pi b^2} \right)^{1/4} e^{-x^2/2b^2}} \qquad \text{(já normalizado!)} \notag \\
+    &= \frac{1}{\sqrt{b}}\left( \frac{1}{\sqrt{\pi}\,2} \right)^{1/2} H_1(x/b)\, e^{-x^2/2b^2}
+\label{eq:aula18_psi1}
+\end{align}
