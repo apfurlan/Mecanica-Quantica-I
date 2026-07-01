@@ -1,0 +1,198 @@
+\section*{(4\textordfeminine\ aula) --- Produto de Operadores, Operador Adjunto, Hermitianos, Unitários e Autovalores (seções 1.6--1.8)}
+
+\subsection*{Produto de Operadores em Forma Matricial}
+
+Vimos que um operador $\hat{\Omega}$ corresponde à matriz com elementos $\Omega_{ij} = \bra{i}\hat{\Omega}\ket{j}$.
+
+O \textbf{produto} $\hat{A}\hat{B}$ corresponde ao produto das matrizes:
+\begin{align}
+    (\hat{A}\hat{B})_{ij} = \bra{i}\hat{A}\hat{B}\ket{j}
+    &= \bra{i}\hat{A}\underbrace{\left(\sum_k \ket{k}\bra{k}\right)}_{\hat{I}}\hat{B}\ket{j} \notag \\
+    &= \sum_k \underbrace{\bra{i}\hat{A}\ket{k}}_{A_{ik}} \underbrace{\bra{k}\hat{B}\ket{j}}_{B_{kj}}
+     = \sum_k A_{ik}\, B_{kj}
+\end{align}
+que é exatamente a regra do \textbf{produto matricial}. A correspondência operador $\leftrightarrow$ matriz preserva o produto.
+
+\subsection*{Operador Adjunto (seção 1.7)}
+
+\begin{shadequote}
+    O \textbf{OPERADOR ADJUNTO} $\hat{\Omega}^\dagger$ de $\hat{\Omega}$ é definido por:
+    \begin{equation}
+        \bra{v}\hat{\Omega}^\dagger\ket{w} \equiv \bra{w}\hat{\Omega}\ket{v}^*
+        \label{eq:adjunto_def}
+    \end{equation}
+    para todos $\ket{v}, \ket{w} \in \mathbb{V}^n$.
+\end{shadequote}
+
+O elemento de matriz $(ij)$ do adjunto é:
+\begin{equation}
+    (\hat{\Omega}^\dagger)_{ij} = \bra{i}\hat{\Omega}^\dagger\ket{j} = \bra{j}\hat{\Omega}\ket{i}^* = \Omega_{ji}^*
+\end{equation}
+
+A \textbf{matriz do adjunto é a transposta conjugada} da matriz original:
+\begin{equation}
+    \hat{\Omega}^\dagger \leftrightarrow (\Omega^T)^* = \Omega^\dagger
+\end{equation}
+
+Propriedades do adjunto:
+\begin{align}
+    (\hat{A} + \hat{B})^\dagger &= \hat{A}^\dagger + \hat{B}^\dagger \\
+    (a\hat{A})^\dagger &= a^*\hat{A}^\dagger \\
+    (\hat{A}\hat{B})^\dagger &= \hat{B}^\dagger\hat{A}^\dagger \label{eq:adjunto_produto} \\
+    (\hat{A}^\dagger)^\dagger &= \hat{A}
+\end{align}
+
+\textbf{Prova de \eqref{eq:adjunto_produto}:}
+Seja $\ket{z} = \hat{B}\ket{v}$; então, pela definição \eqref{eq:adjunto_def}:
+\[
+    \bra{v}(\hat{A}\hat{B})^\dagger\ket{w}
+    = \bigl[\bra{w}\hat{A}\hat{B}\ket{v}\bigr]^*
+    = \bigl[\bra{w}\hat{A}\ket{z}\bigr]^*
+    = \bra{z}\hat{A}^\dagger\ket{w}
+    = \bra{v}\hat{B}^\dagger\hat{A}^\dagger\ket{w} \quad \square
+\]
+
+\subsection*{Operadores Hermitianos e Unitários (seção 1.8)}
+
+\begin{shadequote}
+    \textbf{Operador Hermitiano} (ou auto-adjunto): $\hat{\Omega}^\dagger = \hat{\Omega}$
+
+    Elementos de matriz: $\Omega_{ij} = \Omega_{ji}^*$ (a matriz é igual à sua transposta conjugada).
+\end{shadequote}
+
+\textbf{Exemplo:} $\displaystyle\Omega = \begin{bmatrix} 3 & 1+i \\ 1-i & 0 \end{bmatrix}$
+é Hermitiana, pois $\Omega_{12} = 1+i = \Omega_{21}^*$.
+
+\begin{shadequote}
+    \textbf{Operador Unitário}: $\hat{U}^\dagger\hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}$, ou equivalentemente $\hat{U}^{-1} = \hat{U}^\dagger$.
+\end{shadequote}
+
+\textbf{Exemplo:} $U = \dfrac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}$ é unitária:
+\[
+    U^\dagger U = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}\begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} = I \quad \checkmark
+\]
+
+\begin{observacao}[]{}
+    \textbf{Operador Anti-Hermitiano:} $\hat{\Omega}^\dagger = -\hat{\Omega}$.
+
+    Qualquer operador pode ser decomposto na parte Hermitiana e Anti-Hermitiana:
+    \[
+        \hat{\Omega} = \underbrace{\frac{\hat{\Omega}+\hat{\Omega}^\dagger}{2}}_{\text{Hermitiana}} + \underbrace{\frac{\hat{\Omega}-\hat{\Omega}^\dagger}{2}}_{\text{Anti-Hermitiana}}
+    \]
+\end{observacao}
+
+\subsection*{Autovalores e Autovetores (seção 1.8)}
+
+\begin{shadequote}
+    O \textbf{PROBLEMA DE AUTOVALORES} de um operador $\hat{\Omega}$: encontrar vetores $\ket{\omega}$ (não nulos) e números $\omega$ tais que
+    \begin{equation}
+        \hat{\Omega}\ket{\omega} = \omega\,\ket{\omega}
+    \end{equation}
+    Chamamos $\omega$ de \textbf{autovalor} e $\ket{\omega}$ de \textbf{autovetor} (ou autoestado) de $\hat{\Omega}$.
+\end{shadequote}
+
+Na MQ, grandezas físicas são representadas por operadores Hermitianos e os resultados possíveis de uma medição são os autovalores desses operadores.
+
+Reescrevendo $(\hat{\Omega} - \omega\hat{I})\ket{\omega} = \ket{0}$: para existir solução não trivial, o operador deve ser singular. Em forma matricial:
+\begin{equation}
+    \det(\Omega - \omega\, I) = 0 \qquad \text{(equação característica)}
+\end{equation}
+
+Essa equação de grau $n$ em $\omega$ fornece os $n$ autovalores (com possíveis repetições). Para cada $\omega_k$, o autovetor é encontrado resolvendo o sistema linear $(\Omega - \omega_k I)\ket{\omega_k} = 0$.
+
+\subsection*{Teoremas sobre Operadores Hermitianos}
+
+\begin{shadequote}
+    \textbf{Teorema 1:} Os autovalores de um operador Hermitiano são \textbf{REAIS}.
+\end{shadequote}
+
+\textit{Prova:} Seja $\hat{\Omega}^\dagger = \hat{\Omega}$ e $\hat{\Omega}\ket{\omega} = \omega\ket{\omega}$. Calcula-se $\bra{\omega}\hat{\Omega}\ket{\omega}$ de dois modos:
+\[
+    \bra{\omega}\hat{\Omega}\ket{\omega} = \omega\braket{\omega}{\omega}
+    \quad\text{e}\quad
+    \bra{\omega}\hat{\Omega}^\dagger\ket{\omega} = \bigl[\bra{\omega}\hat{\Omega}\ket{\omega}\bigr]^* = \omega^*\braket{\omega}{\omega}
+\]
+Como $\hat{\Omega} = \hat{\Omega}^\dagger$, as expressões são iguais. Como $\braket{\omega}{\omega} > 0$: $\omega = \omega^* \in \mathbb{R}$. $\square$
+
+\begin{shadequote}
+    \textbf{Teorema 2:} Autovetores de um operador Hermitiano associados a autovalores \textbf{DISTINTOS} são \textbf{ORTOGONAIS}.
+\end{shadequote}
+
+\textit{Prova:} Sejam $\omega_1 \neq \omega_2$ e $\hat{\Omega}\ket{\omega_i} = \omega_i\ket{\omega_i}$. Calculamos $\bra{\omega_1}\hat{\Omega}\ket{\omega_2}$:
+\begin{align*}
+    \bra{\omega_1}\hat{\Omega}\ket{\omega_2} &= \omega_2\braket{\omega_1}{\omega_2} \\
+    \bra{\omega_1}\hat{\Omega}^\dagger\ket{\omega_2} &= \bigl[\bra{\omega_2}\hat{\Omega}\ket{\omega_1}\bigr]^* = \omega_1\braket{\omega_1}{\omega_2}
+    \quad (\omega_1 \in \mathbb{R})
+\end{align*}
+Como $\hat{\Omega} = \hat{\Omega}^\dagger$: $(\omega_2 - \omega_1)\braket{\omega_1}{\omega_2} = 0$. Como $\omega_2 \neq \omega_1$: $\braket{\omega_1}{\omega_2} = 0$. $\square$
+
+\subsection*{Autovalores Degenerados}
+
+Dizemos que $\omega$ é \textbf{degenerado} com \textbf{degenerescência} $m$ se existem $m$ autovetores L.I.\ com esse autovalor. Eles formam um subespaço de dimensão $m$, o \textbf{autoespaço} de $\omega$.
+
+Dentro do autoespaço pode-se escolher $m$ autovetores ortonormais, e qualquer combinação linear deles é autovetor de $\omega$:
+\begin{equation}
+    \hat{\Omega}\left(\sum_{a=1}^m c_a\ket{\omega,a}\right) = \omega\sum_{a=1}^m c_a\ket{\omega,a}
+\end{equation}
+
+\subsection*{Teoremas sobre Operadores Unitários}
+
+\begin{shadequote}
+    \textbf{Teorema 3:} Os autovalores de um operador Unitário têm módulo 1: $|\omega| = 1$, isto é, $\omega = e^{i\theta}$ para algum $\theta \in \mathbb{R}$.
+\end{shadequote}
+
+\textit{Prova:} De $\hat{U}^\dagger\hat{U} = \hat{I}$ e $\hat{U}\ket{\omega} = \omega\ket{\omega}$:
+\[
+    \braket{\omega}{\omega} = \bra{\omega}\hat{U}^\dagger\hat{U}\ket{\omega} = |\omega|^2\braket{\omega}{\omega}
+    \quad \Longrightarrow \quad |\omega|^2 = 1 \quad \square
+\]
+
+\begin{shadequote}
+    \textbf{Teorema 4:} Autovetores de um operador Unitário com autovalores DISTINTOS são ORTOGONAIS.
+\end{shadequote}
+
+A prova é análoga ao Teorema 2.
+
+\subsection*{Exemplo: Operador Hermitiano com Autovalor Degenerado}
+
+Considere, na base $\ket{1}, \ket{2}, \ket{3}$, o operador Hermitiano:
+\begin{equation}
+    \Omega = \begin{bmatrix} 2 & 1 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 3 \end{bmatrix}
+\end{equation}
+
+\textbf{Equação característica:}
+\begin{equation}
+    (3-\omega)\bigl[(2-\omega)^2 - 1\bigr] = 0
+    \quad \Longrightarrow \quad \omega = 1,\quad \omega = 3\; (\text{degenerado, mult.\ 2})
+\end{equation}
+
+\textbf{Autovetor de $\omega = 1$:}
+\[
+    (\Omega - I)\ket{\omega_1} = 0 \quad \Longrightarrow \quad
+    \begin{bmatrix} 1 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 0 & 2 \end{bmatrix}
+    \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = 0
+    \quad \Longrightarrow \quad v_3 = 0,\; v_1 = -v_2
+\]
+\begin{equation}
+    \ket{\omega=1} = \frac{1}{\sqrt{2}}\bigl(\ket{1} - \ket{2}\bigr)
+\end{equation}
+
+\textbf{Autoespaço de $\omega = 3$} (dimensão 2):
+\[
+    (\Omega - 3I)\ket{\omega_3} = 0 \quad \Longrightarrow \quad
+    \begin{bmatrix} -1 & 1 & 0 \\ 1 & -1 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+    \begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} = 0
+    \quad \Longrightarrow \quad v_1 = v_2,\; v_3 \text{ livre}
+\]
+Escolhe-se dois autovetores ortonormais dentro do autoespaço:
+\begin{equation}
+    \ket{\omega=3, a=1} = \frac{1}{\sqrt{2}}\bigl(\ket{1}+\ket{2}\bigr), \qquad
+    \ket{\omega=3, a=2} = \ket{3}
+\end{equation}
+
+A base ortonormal de autovetores é
+$\left\{\dfrac{1}{\sqrt{2}}(\ket{1}-\ket{2}),\ \dfrac{1}{\sqrt{2}}(\ket{1}+\ket{2}),\ \ket{3}\right\}$,
+e nessa base $\Omega$ é diagonal:
+\begin{equation}
+    \Omega \leftrightarrow \begin{bmatrix} 1 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 3 \end{bmatrix}
+\end{equation}

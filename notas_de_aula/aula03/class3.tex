@@ -1,0 +1,161 @@
+\section*{(3\textordfeminine\ aula) --- Subespaços, Operadores Lineares e Representação Matricial (seções 1.4--1.6)}
+
+\subsection*{Subespaços (seção 1.4)}
+
+\begin{shadequote}
+    Um \textbf{SUBESPAÇO} $S$ de um espaço vetorial $\mathbb{V}^n$ é um subconjunto $S \subset \mathbb{V}^n$ que também é um espaço vetorial com as mesmas operações de soma e multiplicação por escalar.
+\end{shadequote}
+
+Para verificar se $S \subset \mathbb{V}^n$ é um subespaço, bastam duas condições:
+\begin{enumerate}
+    \item $\ket{v}, \ket{w} \in S \Longrightarrow \ket{v} + \ket{w} \in S$ \quad (fechado sob adição)
+    \item $\ket{v} \in S,\ a \in \mathbb{C} \Longrightarrow a\ket{v} \in S$ \quad (fechado sob mult.\ por escalar)
+\end{enumerate}
+
+\begin{observacao}[]{}
+    Com as condições 1 e 2, todas as demais propriedades de espaço vetorial seguem automaticamente (pois valem em $\mathbb{V}^n$). Em particular, com $a=0$ em 2: $\ket{0} \in S$, logo o subespaço sempre contém o vetor nulo.
+\end{observacao}
+
+\textbf{Exemplo:} No plano, setas ao longo de uma reta passando pela origem formam um subespaço $S$ de $\mathbb{V}^2$. Setas fora dessa reta não formam subespaço (não são fechadas sob adição).
+
+\textbf{Exemplo:} O conjunto das matrizes $2\times2$ reais \emph{simétricas}
+\[
+    S = \left\{ \begin{bmatrix} a & b \\ b & d \end{bmatrix} :\ a, b, d \in \mathbb{R} \right\}
+\]
+é subespaço do espaço de todas as matrizes $2\times2$ reais, pois a soma de simétricas é simétrica e $\alpha \cdot$ simétrica é simétrica.
+
+\begin{shadequote}
+    O \textbf{SUBESPAÇO GERADO} por vetores $\ket{v_1}, \dots, \ket{v_k}$ (ou \emph{span}) é o conjunto de todas as combinações lineares:
+    \[
+        \mathrm{span}\{\ket{v_1}, \dots, \ket{v_k}\} = \left\{ \sum_{i=1}^k a_i \ket{v_i} :\ a_i \in \mathbb{C} \right\}
+    \]
+\end{shadequote}
+
+\subsection*{Operadores Lineares (seção 1.5)}
+
+\begin{shadequote}
+    Um \textbf{OPERADOR LINEAR} $\hat{\Omega}$ é um mapeamento de $\mathbb{V}^n$ em $\mathbb{V}^n$
+    \[
+        \hat{\Omega}:\, \mathbb{V}^n \to \mathbb{V}^n, \qquad \ket{v} \mapsto \hat{\Omega}\ket{v}
+    \]
+    que satisfaz a linearidade:
+    \[
+        \hat{\Omega}\left(a\ket{v} + b\ket{w}\right) = a\,\hat{\Omega}\ket{v} + b\,\hat{\Omega}\ket{w}
+    \]
+\end{shadequote}
+
+O operador também atua na direita sobre bras:
+\[
+    \bra{v}\hat{\Omega}: \quad \left(\bra{v}\hat{\Omega}\right)\ket{w} \equiv \bra{v}\left(\hat{\Omega}\ket{w}\right)
+\]
+
+\textbf{Exemplos:}
+\begin{itemize}
+    \item \textbf{Operador de rotação} $\hat{R}(\theta, \hat{z})$: rotaciona setas no plano por ângulo $\theta$. Operador linear.
+    \item \textbf{Operador identidade} $\hat{I}$: $\hat{I}\ket{v} = \ket{v}$ para todo $\ket{v}$.
+    \item \textbf{Operador nulo} $\hat{0}$: $\hat{0}\ket{v} = \ket{0}$ para todo $\ket{v}$.
+\end{itemize}
+
+\subsection*{Produto de Operadores e Comutador}
+
+O \textbf{produto} $\hat{A}\hat{B}$ é definido pela composição:
+\[
+    (\hat{A}\hat{B})\ket{v} = \hat{A}\!\left(\hat{B}\ket{v}\right)
+\]
+
+\begin{observacao}[]{}
+    \textbf{ATENÇÃO:} Em geral $\hat{A}\hat{B} \neq \hat{B}\hat{A}$. O produto de operadores \textbf{NÃO é comutativo}.
+\end{observacao}
+
+\begin{shadequote}
+    O \textbf{COMUTADOR} de dois operadores é:
+    \begin{equation}
+        \left[\hat{A},\, \hat{B}\right] \equiv \hat{A}\hat{B} - \hat{B}\hat{A}
+    \end{equation}
+    Se $[\hat{A}, \hat{B}] = 0$, dizemos que $\hat{A}$ e $\hat{B}$ \textbf{comutam}.
+\end{shadequote}
+
+Identidades úteis com comutadores:
+\begin{align}
+    [\hat{A}, \hat{B}] &= -[\hat{B}, \hat{A}] \\
+    [\hat{A}, \hat{B} + \hat{C}] &= [\hat{A}, \hat{B}] + [\hat{A}, \hat{C}] \\
+    [\hat{A}, \hat{B}\hat{C}] &= [\hat{A}, \hat{B}]\hat{C} + \hat{B}[\hat{A}, \hat{C}] \\
+    [\hat{A}\hat{B}, \hat{C}] &= \hat{A}[\hat{B}, \hat{C}] + [\hat{A}, \hat{C}]\hat{B} \\
+    [\hat{A}, [\hat{B}, \hat{C}]] + [\hat{B}, [\hat{C}, \hat{A}]] + [\hat{C}, [\hat{A}, \hat{B}]] &= 0
+    \quad \text{(Identidade de Jacobi)}
+\end{align}
+
+O \textbf{operador inverso} $\hat{\Omega}^{-1}$ satisfaz $\hat{\Omega}\hat{\Omega}^{-1} = \hat{\Omega}^{-1}\hat{\Omega} = \hat{I}$.
+
+\subsection*{Elementos de Matriz (seção 1.6)}
+
+Dado $\hat{\Omega}$ e uma base ortonormal $\{\ket{i}\}$, os \textbf{elementos de matriz} de $\hat{\Omega}$ são:
+\begin{equation}
+    \Omega_{ij} \equiv \bra{i}\hat{\Omega}\ket{j}
+\end{equation}
+
+A ação de $\hat{\Omega}$ sobre $\ket{V} = \sum_j v_j\ket{j}$ em termos dos elementos de matriz:
+\begin{equation}
+    \hat{\Omega}\ket{V} = \sum_{i,j} \Omega_{ij}\, v_j\,\ket{i}
+\end{equation}
+a componente $i$ do vetor resultante é $\sum_j \Omega_{ij} v_j$, que é a regra do produto matricial. Portanto:
+\begin{equation}
+    \hat{\Omega} \leftrightarrow \begin{bmatrix}
+        \Omega_{11} & \Omega_{12} & \cdots & \Omega_{1n} \\
+        \Omega_{21} & \Omega_{22} & \cdots & \Omega_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \Omega_{n1} & \Omega_{n2} & \cdots & \Omega_{nn}
+    \end{bmatrix}
+\end{equation}
+
+\subsection*{Borboletas (Produtos Externos)}
+
+O objeto $\ket{v}\bra{w}$ é um \textbf{produto externo} (ou ``borboleta''). Ele age como operador:
+\begin{equation}
+    \left(\ket{v}\bra{w}\right)\ket{u} = \ket{v}\underbrace{\braket{w}{u}}_{\text{número}} = \braket{w}{u}\,\ket{v}
+\end{equation}
+
+Projeta $\ket{u}$ sobre $\ket{w}$ (extraindo um número complexo) e depois reescala $\ket{v}$.
+
+O elemento de matriz $(ij)$ de $\ket{v}\bra{w}$ na base $\{\ket{i}\}$:
+\begin{equation}
+    \bra{i}\!\left(\ket{v}\bra{w}\right)\!\ket{j} = \braket{i}{v}\braket{w}{j}
+\end{equation}
+
+Qualquer operador pode ser escrito em termos de borboletas usando os elementos de matriz:
+\begin{equation}
+    \hat{\Omega} = \sum_{i,j} \Omega_{ij}\,\ket{i}\bra{j}
+\end{equation}
+
+\subsection*{Projetores}
+
+\begin{shadequote}
+    O \textbf{PROJETOR} sobre $\ket{v}$ (normalizado, $\braket{v}{v}=1$) é:
+    \begin{equation}
+        \hat{P}_v = \ket{v}\bra{v}
+    \end{equation}
+    Ele extrai a componente de qualquer ket na direção $\ket{v}$:
+    \[
+        \hat{P}_v\ket{u} = \ket{v}\underbrace{\braket{v}{u}}_{\text{componente}} = \braket{v}{u}\,\ket{v}
+    \]
+\end{shadequote}
+
+\textbf{Propriedade fundamental --- Idempotência:}
+\begin{equation}
+    \hat{P}_v^2 = \hat{P}_v
+\end{equation}
+\textit{Prova:} $\hat{P}_v^2\ket{u} = \hat{P}_v\!\left(\braket{v}{u}\ket{v}\right) = \braket{v}{u}\underbrace{\braket{v}{v}}_{=1}\ket{v} = \braket{v}{u}\ket{v} = \hat{P}_v\ket{u}$. $\square$
+
+\textbf{Relação de completeza} (resolução da identidade) em uma base ortonormal $\{\ket{i}\}$:
+\begin{equation}
+    \sum_{i=1}^n \ket{i}\bra{i} = \hat{I}
+    \label{eq:completeza}
+\end{equation}
+\textit{Prova:} Para $\ket{V} = \sum_j v_j\ket{j}$:
+\[
+    \sum_i \ket{i}\bra{i}\,\ket{V} = \sum_i \ket{i}\underbrace{\braket{i}{V}}_{=\,v_i} = \sum_i v_i\ket{i} = \ket{V} \quad \square
+\]
+
+\fbox{\parbox{0.92\textwidth}{
+A relação \eqref{eq:completeza} é extremamente útil na notação de Dirac: podemos \textbf{inserir $\hat{I} = \sum_i \ket{i}\bra{i}$} em qualquer produto sem alterar o resultado, uma técnica de uso frequente no cálculo com operadores e produtos internos.
+}}

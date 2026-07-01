@@ -8,8 +8,10 @@ As notas correspondem à turma do **primeiro semestre de 2010**.
 
 | Aula | Tópico |
 |---|---|
-| [1](notas_de_aula/aula01/) | Aula 1 |
+| [1](notas_de_aula/aula01/) | Introdução à Mecânica Quântica |
 | [2](notas_de_aula/aula02/) | Espaços Vetoriais (seções 1.1–1.3) |
+| [3](notas_de_aula/aula03/) | Subespaços, Operadores Lineares e Representação Matricial (seções 1.4–1.6) |
+| [4](notas_de_aula/aula04/) | Produto de Operadores, Adjunto, Hermitianos, Unitários e Autovalores (seções 1.6–1.8) |
 | [5](notas_de_aula/aula05/) | Matrizes Hermitianas e Unitárias: Diagonalização Simultânea |
 | [6](notas_de_aula/aula06/) | Funções de Operadores e Espaços Vetoriais de Dimensão Infinita (seções 1.9, 1.10) |
 | [7](notas_de_aula/aula07/) | Operadores em Dimensão Infinita: Momento, Posição e a Equação de Onda |
